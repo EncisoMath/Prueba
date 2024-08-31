@@ -34,19 +34,6 @@
             max-width: 400px; /* Limita el ancho máximo */
             box-sizing: border-box;
         }
-        img {
-            vertical-align: middle;
-            width: 24px; /* Tamaño moderado para iconos */
-            height: 24px;
-        }
-        select {
-            background-color: #fff;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-        }
         .select-container {
             position: relative;
             display: inline-block;
@@ -63,6 +50,37 @@
         }
         input[type="text"] {
             font-size: 18px; /* Tamaño adecuado para el campo de texto */
+        }
+        .resultado {
+            font-size: 18px; /* Tamaño adecuado para los resultados */
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .resultado div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .resultado img {
+            width: 40px; /* Tamaño moderado para los iconos */
+            height: 40px;
+            margin-right: 10px;
+        }
+        .resultado .separador {
+            border-left: 2px solid #ccc;
+            height: 40px;
+            margin: 0 10px;
+        }
+        .resultado .dato {
+            font-size: 18px; /* Tamaño adecuado para el dato */
+        }
+        .linea-separadora {
+            border-top: 2px solid #ccc;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -83,7 +101,7 @@
             <input type="text" id="codigo" placeholder="Escribe un código de 4 dígitos">
             <button onclick="buscar()">Buscar</button>
         </div>
-        <p id="resultado"></p>
+        <div id="resultado" class="resultado"></div>
     </div>
 
     <script src="script.js"></script>
