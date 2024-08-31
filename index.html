@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Búsqueda de Notas</title>
     <style>
         body {
@@ -11,35 +12,35 @@
             padding: 0;
             background-color: #f0f0f0;
             touch-action: manipulation; /* Impide el zoom con pellizcos */
-            max-width: 100%;
         }
         .container {
-            margin: 20px auto;
+            margin: 0 auto;
             padding: 20px;
-            max-width: 500px;
+            max-width: 100%;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
         }
         h1 {
-            font-size: 24px;
+            font-size: 28px; /* Tamaño grande para el título */
             margin-bottom: 20px;
         }
         select, input, button {
             margin: 10px 0;
-            padding: 10px;
-            font-size: 16px;
+            padding: 20px;
+            font-size: 24px; /* Tamaño grande para texto */
             width: 100%;
             box-sizing: border-box;
         }
         img {
             vertical-align: middle;
-            width: 20px;
-            height: 20px;
+            width: 30px; /* Tamaño grande para iconos */
+            height: 30px;
         }
         select {
             background-color: #fff;
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             border-radius: 4px;
             appearance: none;
             -webkit-appearance: none;
@@ -54,9 +55,13 @@
             content: '▼';
             position: absolute;
             top: 50%;
-            right: 10px;
+            right: 15px;
             transform: translateY(-50%);
             pointer-events: none;
+            font-size: 24px; /* Tamaño grande para la flecha */
+        }
+        input[type="text"] {
+            font-size: 24px; /* Tamaño grande para el campo de texto */
         }
     </style>
 </head>
