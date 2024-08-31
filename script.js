@@ -105,6 +105,7 @@ async function buscar() {
 
                 if (ANIO === anio && PRUEBA === prueba && LLAVE === codigo) {
                     resultado.innerHTML = `
+                        <h1>Resultados</h1>
                         <div class="resultado-item">
                             <span class="resultado-label">NOTA FINAL</span><br>
                             <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" class="resultado-icon">
