@@ -3,7 +3,7 @@ async function buscar() {
     const resultado = document.getElementById('resultado');
 
     if (codigo.length !== 4) {
-        resultado.textContent = 'Por favor, ingresa un código de 4 dígitos.';
+        resultado.textContent = 'Por faadaedavor, ingresa un código de 4 dígitos.';
         return;
     }
 
