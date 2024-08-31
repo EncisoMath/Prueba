@@ -115,6 +115,10 @@ async function buscar() {
                         <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" style="width: 20px; height: 20px; vertical-align: middle;"> 
                         NOTA FINAL: ${NOTAFINAL} <br>
                         <img src="https://cdn-icons-png.flaticon.com/512/5331/5331680.png" alt="Promedio" style="width: 20px; height: 20px; vertical-align: middle;"> 
+                        PROMEDIO: ${PROMEDIO} <br>
+                        <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" style="width: 20px; height: 20px; vertical-align: middle;"> 
+                        NOTA FINAL: ${NOTAFINAL} <br>
+                        <img src="https://cdn-icons-png.flaticon.com/512/5331/5331680.png" alt="Promedio" style="width: 20px; height: 20px; vertical-align: middle;"> 
                         PROMEDIO: ${PROMEDIO}
                     `;
                     encontrado = true;
