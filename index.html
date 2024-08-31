@@ -15,28 +15,22 @@
             background-color: #f4f4f4; /* Color de fondo general */
         }
 
-        .header {
+        .banner {
             width: 100%;
-            height: 200px; /* Ajusta la altura según sea necesario */
-            background-image: url('banner.png');
-            background-size: cover; /* Estira la imagen para cubrir todo el área */
-            background-position: center;
-            background-repeat: no-repeat;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
+            height: 100vh; /* Altura completa del viewport */
+            background: url('banner.png') no-repeat center center; /* Centra la imagen y no la repite */
+            background-size: cover; /* Estira la imagen para cubrir todo el contenedor */
         }
 
-        .container {
-            background-color: #ffffff; /* Color de fondo del cuadro */
+        .content {
+            position: relative;
+            z-index: 1; /* Asegura que el contenido esté sobre el banner */
+            background-color: #ffffff; /* Color de fondo del cuadro de contenido */
             border-radius: 10px;
             padding: 20px;
-            margin: 200px auto 20px; /* Ajustar el margen superior para dejar espacio para la cabecera */
+            margin: 20px auto;
             max-width: 90%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative; /* Asegura que el contenedor esté encima del header */
-            z-index: 2;
         }
 
         input[type="text"], select, button {
@@ -91,17 +85,15 @@
             margin: 20px 0;
         }
 
-        footer {
-            background-color: #ffffff; /* Color de fondo del pie de página */
-            padding: 10px 20px;
-            border-top: 1px solid #ccc;
-            text-align: center;
-            font-size: 14px;
-            color: #333;
+        .credits {
             position: fixed;
             bottom: 0;
-            left: 0;
             width: 100%;
+            background-color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
         }
 
         @viewport {
@@ -112,8 +104,8 @@
     </style>
 </head>
 <body>
-    <div class="header"></div>
-    <div class="container">
+    <div class="banner"></div>
+    <div class="content">
         <h1>Buscar Nota y Promedio</h1>
         <select id="ano" onchange="cargarPruebas()">
             <option value="">Selecciona un año</option>
@@ -129,9 +121,9 @@
         </div>
         <div id="resultado"></div>
     </div>
-    <footer>
-        Créditos: Rubén Enciso de Estadística
-    </footer>
+    <div class="credits">
+        Créditos: Ruben Enciso de Estadística
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
