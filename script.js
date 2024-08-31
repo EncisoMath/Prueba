@@ -9,18 +9,30 @@ async function buscar() {
 
     try {
         const response = await fetch('DATOS.csv');
+        if (!response.ok) {
+            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
+        }
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera
 
         let encontrado = false;
 
-        for (const row of rows) {
-            const [llave, notaFinal, promedio] = row.split(',');
+        // Depuración: Verificar qué se está leyendo del CSV
+        console.log('Contenido del CSV:', rows);
 
-            if (llave === codigo) {
-                resultado.textContent = `NOTA FINAL: ${notaFinal}, PROMEDIO: ${promedio}`;
-                encontrado = true;
-                break;
+        for (const row of rows) {
+            const columns = row.split(',');
+            if (columns.length >= 3) {  // Asegurarse de que hay suficientes columnas
+                const [llave, notaFinal, promedio] = columns.map(col => col.trim()); // Eliminar espacios en blanco
+
+                // Depuración: Mostrar cada valor de llave comparado
+                console.log(`Comparando: "${llave}" con "${codigo}"`);
+
+                if (llave === codigo) {
+                    resultado.textContent = `NOTA FINAL: ${notaFinal}, PROMEDIO: ${promedio}`;
+                    encontrado = true;
+                    break;
+                }
             }
         }
 
@@ -28,7 +40,7 @@ async function buscar() {
             resultado.textContent = 'Código no encontrado.';
         }
     } catch (error) {
-        console.error('Error al leer el archivo CSV:', error);
+        console.error('Error al procesar la solicitud:', error);
         resultado.textContent = 'Hubo un error al procesar la solicitud.';
     }
 }
