@@ -8,7 +8,7 @@ async function buscar() {
     }
 
     try {
-        const response = await fetch('DATOS.csv');
+        const response = await fetch('datos.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
