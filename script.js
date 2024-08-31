@@ -3,7 +3,7 @@ async function buscar() {
     const resultado = document.getElementById('resultado');
 
     if (codigo.length !== 4) {
-        resultado.textContent = 'Por favor, ingresa un código de 4 dígitos.';
+        resultado.innerHTML = 'Por favor, ingresa un código de 4 dígitos.';
         return;
     }
 
@@ -29,7 +29,12 @@ async function buscar() {
                 console.log(`Comparando: "${LLAVE}" con "${codigo}"`);
 
                 if (LLAVE === codigo) {
-                    resultado.textContent = `NOTA FINAL: ${NOTAFINAL}, PROMEDIO: ${PROMEDIO}`;
+                    resultado.innerHTML = `
+                        <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" style="width: 20px; height: 20px; vertical-align: middle;"> 
+                        NOTA FINAL: ${NOTAFINAL} <br>
+                        <img src="https://cdn-icons-png.flaticon.com/512/5331/5331680.png" alt="Promedio" style="width: 20px; height: 20px; vertical-align: middle;"> 
+                        PROMEDIO: ${PROMEDIO}
+                    `;
                     encontrado = true;
                     break;
                 }
@@ -37,10 +42,10 @@ async function buscar() {
         }
 
         if (!encontrado) {
-            resultado.textContent = 'Código no encontrado.';
+            resultado.innerHTML = 'Código no encontrado.';
         }
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
-        resultado.textContent = 'Hubo un error al procesar la solicitud. 431';
+        resultado.innerHTML = 'Hubo un error al procesar la solicitud. 431';
     }
 }
