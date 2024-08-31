@@ -2,108 +2,89 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Búsqueda de Notas</title>
     <style>
         body {
+            font-size: 18px; /* Ajustar el tamaño del texto en general */
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            touch-action: manipulation; /* Impide el zoom con pellizcos */
+            overflow-x: hidden;
         }
-        .container {
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 90%;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            box-sizing: border-box;
+
+        input[type="text"], select, button {
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px;
         }
-        h1 {
-            font-size: 24px; /* Tamaño adecuado para el título */
-            margin-bottom: 20px;
+
+        #resultado {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
-        select, input, button {
-            margin: 10px 0;
-            padding: 12px;
-            font-size: 18px; /* Tamaño moderado para texto */
-            width: 100%;
-            max-width: 400px; /* Limita el ancho máximo */
-            box-sizing: border-box;
-        }
-        .select-container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-        .select-container::after {
-            content: '▼';
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            pointer-events: none;
-            font-size: 18px; /* Tamaño adecuado para la flecha */
-        }
-        input[type="text"] {
-            font-size: 18px; /* Tamaño adecuado para el campo de texto */
-        }
-        .resultado {
-            font-size: 18px; /* Tamaño adecuado para los resultados */
-            margin-top: 20px;
-            text-align: left;
-            display: inline-block;
-            max-width: 100%;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .resultado div {
+
+        .resultado-item {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            text-align: left; /* Para alinear imagen y datos a la izquierda dentro del contenedor centrado */
         }
-        .resultado img {
-            width: 40px; /* Tamaño moderado para los iconos */
+
+        .resultado-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .resultado-icon {
+            width: 40px;
             height: 40px;
             margin-right: 10px;
         }
-        .resultado .separador {
-            border-left: 2px solid #ccc;
+
+        .separador {
+            border-left: 2px solid #000;
             height: 40px;
             margin: 0 10px;
         }
-        .resultado .dato {
-            font-size: 18px; /* Tamaño adecuado para el dato */
+
+        .resultado-dato {
+            font-size: 24px;
         }
+
         .linea-separadora {
-            border-top: 2px solid #ccc;
+            border-top: 2px solid #000;
             margin: 20px 0;
+        }
+
+        @viewport {
+            width: device-width;
+            initial-scale: 1.0;
+            user-scalable: no;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Búsqueda de Nota y Promedio</h1>
-        <div class="select-container" id="container-ano">
-            <select id="ano" onchange="cargarPruebas()">
-                <option value="">Selecciona un año</option>
-            </select>
-        </div>
-        <div class="select-container" id="container-prueba" style="display: none;">
-            <select id="prueba" onchange="mostrarCampoCodigo()">
-                <option value="">Selecciona una prueba</option>
-            </select>
-        </div>
-        <div id="busqueda" style="display: none;">
-            <input type="text" id="codigo" placeholder="Escribe un código de 4 dígitos">
-            <button onclick="buscar()">Buscar</button>
-        </div>
-        <div id="resultado" class="resultado"></div>
+    <h1>Buscar Nota y Promedio</h1>
+    <select id="ano" onchange="cargarPruebas()">
+        <option value="">Selecciona un año</option>
+    </select>
+    <div id="container-prueba" style="display: none;">
+        <select id="prueba" onchange="mostrarCampoCodigo()">
+            <option value="">Selecciona una prueba</option>
+        </select>
     </div>
-
+    <div id="busqueda" style="display: none;">
+        <input type="text" id="codigo" placeholder="Escribe un código de 4 dígitos">
+        <button onclick="buscar()">Buscar</button>
+    </div>
+    <div id="resultado"></div>
     <script src="script.js"></script>
 </body>
 </html>
