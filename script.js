@@ -41,6 +41,6 @@ async function buscar() {
         }
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
-        resultado.textContent = 'Hubo un error al procesar la solicitud.';
+        resultado.textContent = 'Hubo un error al procesar la solicitud. 431';
     }
 }
