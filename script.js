@@ -23,13 +23,13 @@ async function buscar() {
         for (const row of rows) {
             const columns = row.split(',');
             if (columns.length >= 3) {  // Asegurarse de que hay suficientes columnas
-                const [llave, notaFinal, promedio] = columns.map(col => col.trim()); // Eliminar espacios en blanco
+                const [LLAVE, NOTAFINAL, PROMEDIO] = columns.map(col => col.trim()); // Eliminar espacios en blanco
 
-                // Depuración: Mostrar cada valor de llave comparado
-                console.log(`Comparando: "${llave}" con "${codigo}"`);
+                // Depuración: Mostrar cada valor de LLAVE comparado
+                console.log(`Comparando: "${LLAVE}" con "${codigo}"`);
 
-                if (llave === codigo) {
-                    resultado.textContent = `NOTA FINAL: ${notaFinal}, PROMEDIO: ${promedio}`;
+                if (LLAVE === codigo) {
+                    resultado.textContent = `NOTA FINAL: ${NOTAFINAL}, PROMEDIO: ${PROMEDIO}`;
                     encontrado = true;
                     break;
                 }
