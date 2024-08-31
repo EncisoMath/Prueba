@@ -1,39 +1,53 @@
 /* Usar Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* Aplicar la fuente a todo el cuerpo de la página */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f0f0f0;
     color: #333;
-    margin: 20px;
-    font-size: 16px; /* Tamaño de fuente general */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    font-size: 18px; /* Tamaño de fuente general */
 }
 
-/* Estilo para el encabezado */
 h1 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700; /* Negrita */
+    font-weight: 700;
+    margin: 20px 0;
 }
 
-/* Estilo para los elementos de texto */
 input, button {
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font-size: 24px; /* Tamaño de fuente grande */
     margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-/* Estilo para el botón */
 button {
-    padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-/* Cambiar el color del botón cuando se pasa el mouse sobre él */
 button:hover {
     background-color: #0056b3;
+}
+
+#resultado {
+    font-size: 24px; /* Tamaño de fuente grande */
+    margin-top: 20px;
+}
+
+img {
+    width: 24px; /* Tamaño del ícono */
+    height: 24px; /* Tamaño del ícono */
+    vertical-align: middle;
 }
