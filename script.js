@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    cargarAnos();
+    cargarAnios();
 });
 
-async function cargarAnos() {
+async function cargarAnios() {
     try {
         const response = await fetch('datos.csv');
         if (!response.ok) {
