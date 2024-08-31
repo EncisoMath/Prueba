@@ -12,6 +12,7 @@
             padding: 0;
             overflow-x: hidden;
             background-color: #f4f4f4; /* Color de fondo general */
+            text-align: center; /* Centrar el texto en el cuerpo */
         }
 
         .banner {
@@ -19,6 +20,17 @@
             height: 150px; /* Altura fija para el banner */
             background: url('banner.png') no-repeat center center; /* Centra la imagen y no la repite */
             background-size: cover; /* Estira la imagen para cubrir el área del banner */
+            position: relative; /* Hacer que el banner sea el contenedor de la imagen de logo */
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background: url('logo.png') no-repeat center center;
+            background-size: contain; /* Mantener la relación de aspecto del logo */
         }
 
         .content {
@@ -28,6 +40,7 @@
             margin: 20px auto;
             max-width: 90%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centrar el contenido dentro del cuadro */
         }
 
         input[type="text"], select, button {
@@ -101,7 +114,9 @@
     </style>
 </head>
 <body>
-    <div class="banner"></div>
+    <div class="banner">
+        <div class="logo"></div>
+    </div>
     <div class="content">
         <h1>Buscar Nota y Promedio</h1>
         <select id="ano" onchange="cargarPruebas()">
