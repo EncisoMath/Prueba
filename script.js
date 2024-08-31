@@ -1,4 +1,4 @@
-async function cargarAno() {
+async function cargarAnios() {
     try {
         const response = await fetch('datos.csv');
         if (!response.ok) {
@@ -7,23 +7,24 @@ async function cargarAno() {
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera
 
-        const anoSelect = document.getElementById('ano');
+        // Extraer años únicos
         const anios = new Set();
-
-        for (const row of rows) {
+        rows.forEach(row => {
             const columns = row.split(',');
-            if (columns.length >= 2) {  // Asegurarse de que hay suficientes columnas
-                const anio = columns[0].trim(); // Leer el valor de ANIO
-                anios.add(anio);
+            if (columns.length >= 4) {
+                const [ANIO] = columns.map(col => col.trim()); // Extraer el valor de ANIO
+                anios.add(ANIO);
             }
-        }
+        });
 
+        const anoSelect = document.getElementById('ano');
         anios.forEach(anio => {
             const option = document.createElement('option');
             option.value = anio;
             option.textContent = anio;
             anoSelect.appendChild(option);
         });
+
     } catch (error) {
         console.error('Error al cargar los años:', error);
     }
@@ -31,14 +32,7 @@ async function cargarAno() {
 
 async function cargarPruebas() {
     const anio = document.getElementById('ano').value;
-    const pruebaSelect = document.getElementById('prueba');
-    pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Resetear opciones
-
-    if (!anio) {
-        document.getElementById('container-prueba').style.display = 'none';
-        document.getElementById('busqueda').style.display = 'none';
-        return;
-    }
+    if (!anio) return;
 
     try {
         const response = await fetch('datos.csv');
@@ -48,19 +42,20 @@ async function cargarPruebas() {
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera
 
+        // Extraer pruebas para el año seleccionado
         const pruebas = new Set();
-
-        for (const row of rows) {
+        rows.forEach(row => {
             const columns = row.split(',');
-            if (columns.length >= 3) {  // Asegurarse de que hay suficientes columnas
-                const anioRow = columns[0].trim(); // Leer el valor de ANIO
-                const prueba = columns[1].trim(); // Leer el valor de PRUEBA
-                if (anioRow === anio) {
-                    pruebas.add(prueba);
+            if (columns.length >= 4) {
+                const [ANIO, PRUEBA] = columns.map(col => col.trim()); // Extraer valores de ANIO y PRUEBA
+                if (ANIO === anio) {
+                    pruebas.add(PRUEBA);
                 }
             }
-        }
+        });
 
+        const pruebaSelect = document.getElementById('prueba');
+        pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Limpiar opciones anteriores
         pruebas.forEach(prueba => {
             const option = document.createElement('option');
             option.value = prueba;
@@ -68,7 +63,8 @@ async function cargarPruebas() {
             pruebaSelect.appendChild(option);
         });
 
-        document.getElementById('container-prueba').style.display = 'block';
+        document.getElementById('container-prueba').style.display = 'block'; // Mostrar el campo de prueba
+
     } catch (error) {
         console.error('Error al cargar las pruebas:', error);
     }
@@ -77,15 +73,15 @@ async function cargarPruebas() {
 function mostrarCampoCodigo() {
     const prueba = document.getElementById('prueba').value;
     if (prueba) {
-        document.getElementById('busqueda').style.display = 'block';
-    } else {
-        document.getElementById('busqueda').style.display = 'none';
+        document.getElementById('busqueda').style.display = 'block'; // Mostrar el campo de código
     }
 }
 
 async function buscar() {
     const codigo = document.getElementById('codigo').value.trim();
     const resultado = document.getElementById('resultado');
+    const anio = document.getElementById('ano').value;
+    const prueba = document.getElementById('prueba').value;
 
     if (codigo.length !== 4) {
         resultado.innerHTML = 'Por favor, ingresa un código de 4 dígitos.';
@@ -102,24 +98,26 @@ async function buscar() {
 
         let encontrado = false;
 
-        // Depuración: Verificar qué se está leyendo del CSV
-        console.log('Contenido del CSV:', rows);
-
         for (const row of rows) {
             const columns = row.split(',');
-            if (columns.length >= 4) {  // Asegurarse de que hay suficientes columnas
-                const [anioRow, pruebaRow, LLAVE, NOTAFINAL, PROMEDIO] = columns.map(col => col.trim()); // Eliminar espacios en blanco
+            if (columns.length >= 4) { // Asegurarse de que hay suficientes columnas
+                const [ANIO, PRUEBA, LLAVE, NOTAFINAL, PROMEDIO] = columns.map(col => col.trim()); // Eliminar espacios en blanco
 
-                if (LLAVE === codigo) {
+                if (ANIO === anio && PRUEBA === prueba && LLAVE === codigo) {
                     resultado.innerHTML = `
-                        <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" style="width: 20px; height: 20px; vertical-align: middle;"> 
-                        NOTA FINAL: ${NOTAFINAL} <br>
-                        <img src="https://cdn-icons-png.flaticon.com/512/5331/5331680.png" alt="Promedio" style="width: 20px; height: 20px; vertical-align: middle;"> 
-                        PROMEDIO: ${PROMEDIO} <br>
-                        <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" style="width: 20px; height: 20px; vertical-align: middle;"> 
-                        NOTA FINAL: ${NOTAFINAL} <br>
-                        <img src="https://cdn-icons-png.flaticon.com/512/5331/5331680.png" alt="Promedio" style="width: 20px; height: 20px; vertical-align: middle;"> 
-                        PROMEDIO: ${PROMEDIO}
+                        <div class="resultado-item">
+                            <span class="resultado-label">NOTA FINAL</span><br>
+                            <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" class="resultado-icon">
+                            <div class="separador"></div>
+                            <span class="resultado-dato">${NOTAFINAL}/100</span>
+                        </div>
+                        <div class="linea-separadora"></div>
+                        <div class="resultado-item">
+                            <span class="resultado-label">PROMEDIO</span><br>
+                            <img src="https://cdn-icons-png.flaticon.com/512/5331/5331680.png" alt="Promedio" class="resultado-icon">
+                            <div class="separador"></div>
+                            <span class="resultado-dato">${PROMEDIO}/100</span>
+                        </div>
                     `;
                     encontrado = true;
                     break;
@@ -136,5 +134,5 @@ async function buscar() {
     }
 }
 
-// Inicializar el selector de años al cargar la página
-document.addEventListener('DOMContentLoaded', cargarAno);
+// Inicializar el año al cargar la página
+window.onload = cargarAnios;
