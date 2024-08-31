@@ -8,9 +8,21 @@
 </head>
 <body>
     <h1>Buscar Nota y Promedio</h1>
-    <input type="text" id="codigo" placeholder="Escribe un código de 4 dígitos">
-    <button onclick="buscar()">Buscar</button>
-    <p id="resultado"></p>
+    <label for="ano">Selecciona un Año:</label>
+    <select id="ano" onchange="cargarPruebas()">
+        <option value="">Selecciona un año</option>
+    </select>
+
+    <label for="prueba">Selecciona una Prueba:</label>
+    <select id="prueba" onchange="mostrarCampoCodigo()">
+        <option value="">Selecciona una prueba</option>
+    </select>
+
+    <div id="busqueda" style="display: none;">
+        <input type="text" id="codigo" placeholder="Escribe un código de 4 dígitos">
+        <button onclick="buscar()">Buscar</button>
+        <p id="resultado"></p>
+    </div>
 
     <script src="script.js"></script>
 </body>
