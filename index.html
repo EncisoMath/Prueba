@@ -45,7 +45,6 @@
             -webkit-appearance: none;
             -moz-appearance: none;
         }
-        /* Estilo para el contenedor del select para mantener la apariencia consistente */
         .select-container {
             position: relative;
             display: inline-block;
@@ -64,12 +63,12 @@
 <body>
     <div class="container">
         <h1>Búsqueda de Nota y Promedio</h1>
-        <div class="select-container">
+        <div class="select-container" id="container-ano">
             <select id="ano" onchange="cargarPruebas()">
                 <option value="">Selecciona un año</option>
             </select>
         </div>
-        <div class="select-container">
+        <div class="select-container" id="container-prueba" style="display: none;">
             <select id="prueba" onchange="mostrarCampoCodigo()">
                 <option value="">Selecciona una prueba</option>
             </select>
