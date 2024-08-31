@@ -12,12 +12,25 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            background-color: #f4f4f4; /* Color de fondo general */
+        }
+
+        .container {
+            background-color: #ffffff; /* Color de fondo del cuadro */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         input[type="text"], select, button {
             font-size: 18px;
             padding: 10px;
             margin: 10px;
+            width: calc(100% - 42px); /* Ajustar el ancho para el padding y border */
+            max-width: 400px; /* Limitar el ancho máximo */
+            box-sizing: border-box; /* Incluye padding y border en el ancho total */
         }
 
         #resultado {
@@ -33,7 +46,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            text-align: left; /* Para alinear imagen y datos a la izquierda dentro del contenedor centrado */
+            text-align: left; /* Alinear imagen y datos a la izquierda dentro del contenedor centrado */
         }
 
         .resultado-label {
@@ -71,20 +84,22 @@
     </style>
 </head>
 <body>
-    <h1>Buscar Nota y Promedio</h1>
-    <select id="ano" onchange="cargarPruebas()">
-        <option value="">Selecciona un año</option>
-    </select>
-    <div id="container-prueba" style="display: none;">
-        <select id="prueba" onchange="mostrarCampoCodigo()">
-            <option value="">Selecciona una prueba</option>
+    <div class="container">
+        <h1>Buscar Nota y Promedio</h1>
+        <select id="ano" onchange="cargarPruebas()">
+            <option value="">Selecciona un año</option>
         </select>
+        <div id="container-prueba" style="display: none;">
+            <select id="prueba" onchange="mostrarCampoCodigo()">
+                <option value="">Selecciona una prueba</option>
+            </select>
+        </div>
+        <div id="busqueda" style="display: none;">
+            <input type="text" id="codigo" placeholder="Escribe un código de 4 dígitos">
+            <button onclick="buscar()">Buscar</button>
+        </div>
+        <div id="resultado"></div>
     </div>
-    <div id="busqueda" style="display: none;">
-        <input type="text" id="codigo" placeholder="Escribe un código de 4 dígitos">
-        <button onclick="buscar()">Buscar</button>
-    </div>
-    <div id="resultado"></div>
     <script src="script.js"></script>
 </body>
 </html>
