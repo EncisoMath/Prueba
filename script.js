@@ -37,7 +37,7 @@ async function buscar() {
         }
 
         if (!encontrado) {
-            resultado.textContent = 'Código no encontrado.';
+            resultado.textContent = 'Códiadfadfgo no encontrado.';
         }
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
