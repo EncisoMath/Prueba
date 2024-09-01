@@ -9,7 +9,7 @@ async function cargarAniosYPruebas() {
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera si la hay
 
-        // Estructuras para almacenar años y pruebas únicosd
+        // Estructuras para almacenar años y pruebas únicos
         const anios = new Set();
         const pruebasPorAnio = {};
 
@@ -106,16 +106,17 @@ async function buscar() {
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera si existe
 
-        // Buscar el código en la columna LLAVE
+        // Buscar la columna LLAVE y NOMBRE
         const header = rows.shift().split(',').map(col => col.trim());
         const llaveIndex = header.indexOf('LLAVE');
         const nombreIndex = header.indexOf('NOMBRE');
-        
+
         if (llaveIndex === -1 || nombreIndex === -1) {
             resultado.innerHTML = 'Las columnas LLAVE o NOMBRE no se encontraron en el archivo.';
             return;
         }
 
+        // Buscar el código en la columna LLAVE
         const match = rows.find(row => {
             const columns = row.split(',').map(col => col.trim());
             return columns[llaveIndex] === codigo; // Comparar con la columna LLAVE
