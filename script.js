@@ -174,27 +174,31 @@ async function buscar() {
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
                         <div class="resultados-container">
-                                <!-- Bloque izquierdo -->
-                                <div class="resultado-left">
-                                    <div class="resultado-item">
-                                        <span style="color: orange;">Alumno: </span>
-                                        <span>${NOMBRE}</span>
-                                    </div>
-                                    <div class="resultado-item">
-                                        <span style="color: orange;">Grado y Sede: </span>
-                                        <span>${GRADO} ${SEDE}</span>
-                                    </div>
+                            <!-- Bloque izquierdo -->
+                            <div class="resultado-left">
+                                <div class="resultado-item">
+                                    <span style="color: orange;">Alumno: </span>
+                                    <span>${NOMBRE}</span>
                                 </div>
-                                <div class="resultado-right">
-                                    <div class="resultado-item">
-                                        <div>Ranking</div>
-                                        <div>1</div>
-                                    </div>
+                                <div class="resultado-item">
+                                    <span style="color: orange;">Grado y Sede: </span>
+                                    <span>${GRADO} ${SEDE}</span>
                                 </div>
-                        <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
-                        ${tablaNotas}
+                            </div>
+                    
+                            <!-- Bloque derecho -->
+                            <div class="resultado-right">
+                                <div class="resultado-item">
+                                    <div>Ranking</div>
+                                    <div>${ranking}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="linea-separadora">
+                        <div class="tabla-notas">
+                            ${tablaNotas}
+                        </div>
                     `;
-
                     encontrado = true;
                     break;
                 }
