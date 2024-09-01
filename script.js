@@ -9,7 +9,7 @@ async function cargarAniosYPruebas() {
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera si la hay
 
-        // Estructuras para almacenar años y pruebas únicos
+        // Estructuras para almacenar años y pruebas únicosd
         const anios = new Set();
         const pruebasPorAnio = {};
 
