@@ -190,7 +190,7 @@ async function buscar() {
                             <div class="resultado-right">
                                 <div class="bold-font" style="color: orange;font-size: 60px;">Ranking</div>
                                 <div class="bold-font" style="font-size: 40px;">
-                                <img src="RANKING.png" style="width: 50px; height: 50px;">
+                                <img src="RANKING.png" style="width: 70px; height: 70px;">
                                 <span>1</span>
                                 </div>
                                 </div>
