@@ -134,30 +134,30 @@ async function buscar() {
                     });
 
                     // Construir la tabla con las notas
-                    const tablaNotas = `
-                        <table border="1" style="border-collapse: collapse; width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th style="padding: 8px; text-align: center;">Asignatura</th>
-                                    <th style="padding: 8px; text-align: center;">Respuestas Correctas</th>
-                                    <th style="padding: 8px; text-align: center;">Resultados</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${datosAsignaturas.map(asignatura => `
-                                    <tr>
-                                        <td style="padding: 8px;">${asignatura.nombre}</td>
-                                        <td style="padding: 8px;">
-                                            <span style="font-size: 25px;">${asignatura.respuestasCorrectas}</span>
-                                            /
-                                            <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span>
-                                        </td>
-                                        <td style="padding: 8px;">${asignatura.resultado}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    `;
+const tablaNotas = `
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th style="padding: 8px; text-align: center;">Asignatura</th>
+                <th style="padding: 8px; text-align: center;">Respuestas Correctas</th>
+                <th style="padding: 8px; text-align: center;">Resultados</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${datosAsignaturas.map(asignatura => `
+                <tr>
+                    <td style="padding: 8px;">${asignatura.nombre}</td>
+                    <td style="padding: 8px;">
+                        <span style="font-size: 25px;">${asignatura.respuestasCorrectas}</span>
+                        <span style="font-size: 15px;"> / </span> <!-- Aquí se ajusta el tamaño del "/" -->
+                        <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span>
+                    </td>
+                    <td style="padding: 8px;">${asignatura.resultado}</td>
+                </tr>
+            `).join('')}
+        </tbody>
+    </table>
+`;
 
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
