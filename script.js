@@ -139,8 +139,8 @@ async function buscar() {
                             <thead>
                                 <tr>
                                     <th style="padding: 8px; text-align: center; font-size: 25px">Asignatura</th>
-                                    <th style="padding: 8px; text-align: center; font-size: 25px">Respuestas Correctas</th>
-                                    <th style="padding: 8px; text-align: center; font-size: 25px">Resultados</th>
+                                    <th style="padding: 8px; text-align: center; font-size: 25px">Aciertos</th>
+                                    <th style="padding: 8px; text-align: center; font-size: 25px">Puntaje</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -188,9 +188,9 @@ async function buscar() {
                     
                             <!-- Bloque derecho -->
                             <div class="resultado-right">
-                                <div class="bold-font" style="color: orange; font-size: 60px; margin-top: 0;">Ranking</div>
-                                <div class="bold-font" style="font-size: 40px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                    <img src="RANKING.png" style="width: 50px; height: 50px;">
+                                <div class="bold-font" style="color: orange; font-size: 40px; margin-top: 0;">Ranking</div>
+                                <div class="bold-font" style="font-size: 30px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                    <img src="RANKING.png" style="width: 40px; height: 40px;">
                                     <span>1</span>
                                 </div>
                             </div>
