@@ -110,7 +110,7 @@ async function buscar() {
         }, {});
 
         let encontrado = false;
-        const asignaturas = ['ARITMETICA', 'ESTADISTICA', 'GEOMETRIA', "INGLES", "ETICA", "EDUFISICA", "FILOSOFIA", "RELIGION", "CONSTITUCION"]; // Añadir más asignaturas si es necesario
+        const asignaturas = ['ARITMETICA', 'ESTADISTICA', 'GEOMETRIA', "EDUFISICA", "INGLES", "ETICA", "BIOLOGIA", "FISICA", "QUIMICA", "RELIGION", "FILOSOFIA", "CONSTITUCION", "HISTORIA", "GEOGRAFIA", "INFORMATICA", "LENGUACASTELLANA", "LECTURACRITICA", "ARTISTICA"]; // Añadir más asignaturas si es necesario
         const datosAsignaturas = [];
 
         for (const row of rows) {
