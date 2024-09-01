@@ -121,6 +121,7 @@ async function buscar() {
     }
 
     try {
+        const nombreAsignaturaMap = await cargarNombresAsignaturas();
         const response = await fetch('datos.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
