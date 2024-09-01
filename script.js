@@ -135,7 +135,7 @@ async function buscar() {
 
                     // Construir la tabla con las notas
 const tablaNotas = `
-    <table border="1" style="border-collapse: collapse; width: 100%;">
+    <table border="1" style="border-collapse: collapse; width: 100%; font-size: 25px;"> <!-- Establece tamaño de letra general -->
         <thead>
             <tr>
                 <th style="padding: 8px; text-align: center;">Asignatura</th>
@@ -146,18 +146,19 @@ const tablaNotas = `
         <tbody>
             ${datosAsignaturas.map(asignatura => `
                 <tr>
-                    <td style="padding: 25px;">${asignatura.nombre}</td>
+                    <td style="padding: 8px;">${asignatura.nombre}</td>
                     <td style="padding: 8px;">
-                        <span style="font-size: 25px;">${asignatura.respuestasCorrectas}</span>
-                        <span style="font-size: 15px;"> / </span>
-                        <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span>
+                        <span>${asignatura.respuestasCorrectas}</span>
+                        <span style="font-size: 15px;"> / </span> <!-- Ajusta el tamaño del "/" -->
+                        <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span> <!-- Ajusta el tamaño de cantidadPreguntas -->
                     </td>
-                    <td style="padding: 25px;">${asignatura.resultado}</td>
+                    <td style="padding: 8px;">${asignatura.resultado}</td>
                 </tr>
             `).join('')}
         </tbody>
     </table>
 `;
+
 
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
