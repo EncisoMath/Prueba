@@ -140,7 +140,7 @@ const tablaNotas = `
             <tr>
                 <th style="padding: 8px; text-align: center;">Asignatura</th>
                 <th style="padding: 8px; text-align: center;">Respuestas Correctas</th>
-                <th style="padding: 8px; text-align: center;">Resultados</th>
+                <th style="padding: 8px; text-align: center;">Nota Final</th>
             </tr>
         </thead>
         <tbody>
