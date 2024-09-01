@@ -1,12 +1,12 @@
 @font-face {
     font-family: 'BoldFont';
-    src: url('Numero.ttf') format('truetype');
+    src: url('Bold.ttf') format('truetype');
     font-weight: bold;
 }
 
 @font-face {
-    font-family: 'NumeroFont';
-    src: url('Numero.ttf') format('truetype');
+    font-family: 'MediumFont';
+    src: url('Medium.ttf') format('truetype');
     font-weight: normal;
 }
 
@@ -18,7 +18,7 @@
 
 body {
     font-size: 18px; /* Ajustar el tamaño del texto en general */
-    font-family: 'NumeroFont', Arial, sans-serif; /* Usar la fuente Medium como primera opción */
+    font-family: 'MediumFont', Arial, sans-serif; /* Usar la fuente Medium como primera opción */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -81,18 +81,18 @@ input[type="text"], select, button {
     justify-content: center;
     margin-bottom: 20px;
     text-align: left; /* Alinear imagen y datos a la izquierda dentro del contenedor centrado */
-    font-family: Arial; /* Usar la fuente Bold para los resultados */
+    font-family: 'NumeroFont'; /* Usar la fuente NumeroFont para los resultados */
 }
 
 .resultado-label {
-    font-family: 'NumeroFont'; /* Usar la fuente Medium para las etiquetas */
+    font-family: 'BoldFont'; /* Usar la fuente Bold para las etiquetas */
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
 }
 
 .resultado-dato {
-    font-family: 'NumeroFont'; /* Usar la fuente Numero para los datos numéricos */
+    font-family: 'NumeroFont'; /* Usar la fuente NumeroFont para los datos numéricos */
     font-size: 24px;
 }
 
