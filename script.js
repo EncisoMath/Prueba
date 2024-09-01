@@ -106,8 +106,10 @@ async function buscar() {
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera si existe
 
-        // Buscar la columna LLAVE y NOMBRE
+        // Mostrar encabezado para depuración
         const header = rows.shift().split(',').map(col => col.trim());
+        console.log('Encabezado del archivo:', header); // Mostrar en consola
+
         const llaveIndex = header.indexOf('LLAVE');
         const nombreIndex = header.indexOf('NOMBRE');
 
