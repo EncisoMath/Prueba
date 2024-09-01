@@ -148,7 +148,15 @@ async function buscar() {
                                     <tr>
                                         <td style="padding: 8px; text-align: center;">
                                             <div style="display: flex; flex-direction: column; align-items: center;">
-                                                <img src="aritmetica.png" style="width: 60px; height: 60px;">
+                                                ${(() => {
+                                                    const imageFileName = `${asignatura.nombre}.png`; // Componer el nombre del archivo
+                                                    const ImageToLoad = `https://raw.githubusercontent.com/EncisoMath/Prueba/main/${imageFileName}`;
+                                                    return `<img 
+                                                        src="${ImageToLoad}"
+                                                        style="width: 60px; height: 60px;"
+                                                        onerror="this.src='https://via.placeholder.com/60';"
+                                                        alt="${asignatura.nombre}">`;
+                                                })()}
                                                 <span>${asignatura.nombre}</span>
                                             </div>
                                         </td>
