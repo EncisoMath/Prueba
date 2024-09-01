@@ -66,7 +66,7 @@ async function buscar() {
                                 ${datosAsignaturas.map(asignatura => `
                                     <tr>
                                         <td style="padding: 8px; text-align: center;">
-                                            <img src="https://raw.githubusercontent.com/EncisoMath/Prueba/main/${asignatura.nombre}.png" alt="${asignatura.nombre}" style="max-width: 100px; max-height: 100px;">
+                                            <img src="imagenes/${asignatura.nombre}.png" alt="${asignatura.nombre}" style="max-width: 100px; max-height: 100px;">
                                         </td>
                                         <td style="padding: 8px;">${asignatura.nombre}</td>
                                         <td style="padding: 8px;">
