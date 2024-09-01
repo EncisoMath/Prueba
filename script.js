@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', cargarAniosYPruebas);
+
 async function cargarAniosYPruebas() {
     try {
         const response = await fetch('general.csv');
@@ -5,7 +7,7 @@ async function cargarAniosYPruebas() {
             throw new Error(`Error al cargar el archivo general: ${response.statusText}`);
         }
         const data = await response.text();
-        const rows = data.split('\n').slice(1); // Saltar la cabecera
+        const rows = data.split('\n').slice(1); // Saltar la cabecera si la hay
 
         // Estructuras para almacenar años y pruebas únicos
         const anios = new Set();
@@ -53,7 +55,13 @@ async function cargarAniosYPruebas() {
 
     } catch (error) {
         console.error('Error al cargar los años y pruebas:', error);
+        alert('Hubo un error al cargar los datos. Por favor, revisa la consola para más detalles.');
     }
+}
+
+function mostrarCampoCodigo() {
+    const pruebaSelect = document.getElementById('prueba');
+    document.getElementById('busqueda').style.display = pruebaSelect.value ? 'block' : 'none';
 }
 
 async function buscar() {
@@ -96,4 +104,17 @@ async function buscar() {
             throw new Error(`Error al cargar el archivo ${archivo}: ${response.statusText}`);
         }
         const data = await response.text();
-        const
+        const rows = data.split('\n').slice(1); // Saltar la cabecera si existe
+
+        // Filtrar por el código ingresado
+        const match = rows.find(row => row.startsWith(codigo));
+        if (match) {
+            resultado.innerHTML = `<div class="resultado-item">${match}</div>`;
+        } else {
+            resultado.innerHTML = 'No se encontraron resultados para el código ingresado.';
+        }
+    } catch (error) {
+        console.error('Error durante la búsqueda:', error);
+        resultado.innerHTML = 'Hubo un error al realizar la búsqueda.';
+    }
+}
