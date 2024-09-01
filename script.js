@@ -1,30 +1,22 @@
-async function cargarAniosYPruebas() {
+async function cargarAnios() {
     try {
-        const response = await fetch('general.csv');
+        const response = await fetch('datos.csv');
         if (!response.ok) {
-            throw new Error(`Error al cargar el archivo general: ${response.statusText}`);
+            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
         const data = await response.text();
-        const rows = data.split('\n').slice(1); // Saltar la cabecera si la hay
+        const rows = data.split('\n').slice(1); // Saltar la cabecera
 
-        // Estructuras para almacenar años y pruebas únicos
+        // Extraer años únicos
         const anios = new Set();
-        const pruebasPorAnio = {};
-
         rows.forEach(row => {
-            const columns = row.split(',').map(col => col.trim());
-            if (columns.length >= 3) { // Verificar que al menos tenga 3 columnas
-                const [ANIO, PRUEBA] = columns.slice(0, 2);
+            const columns = row.split(',');
+            if (columns.length) {
+                const [ANIO] = columns.map(col => col.trim()); // Extraer el valor de ANIO
                 anios.add(ANIO);
-                
-                if (!pruebasPorAnio[ANIO]) {
-                    pruebasPorAnio[ANIO] = new Set();
-                }
-                pruebasPorAnio[ANIO].add(PRUEBA);
             }
         });
 
-        // Llenar selector de años
         const anoSelect = document.getElementById('ano');
         anios.forEach(anio => {
             const option = document.createElement('option');
@@ -33,33 +25,56 @@ async function cargarAniosYPruebas() {
             anoSelect.appendChild(option);
         });
 
-        // Event listener para actualizar pruebas al cambiar de año
-        anoSelect.addEventListener('change', () => {
-            const selectedYear = anoSelect.value;
-            const pruebaSelect = document.getElementById('prueba');
-            pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Limpiar opciones anteriores
+    } catch (error) {
+        console.error('Error al cargar los años:', error);
+    }
+}
 
-            if (pruebasPorAnio[selectedYear]) {
-                pruebasPorAnio[selectedYear].forEach(prueba => {
-                    const option = document.createElement('option');
-                    option.value = prueba;
-                    option.textContent = prueba;
-                    pruebaSelect.appendChild(option);
-                });
+async function cargarPruebas() {
+    const anio = document.getElementById('ano').value;
+    if (!anio) return;
+
+    try {
+        const response = await fetch('datos.csv');
+        if (!response.ok) {
+            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
+        }
+        const data = await response.text();
+        const rows = data.split('\n').slice(1); // Saltar la cabecera
+
+        // Extraer pruebas para el año seleccionado
+        const pruebas = new Set();
+        rows.forEach(row => {
+            const columns = row.split(',');
+            if (columns.length) {
+                const [ANIO, PRUEBA] = columns.map(col => col.trim()); // Extraer valores de ANIO y PRUEBA
+                if (ANIO === anio) {
+                    pruebas.add(PRUEBA);
+                }
             }
-
-            document.getElementById('container-prueba').style.display = selectedYear ? 'block' : 'none';
         });
 
+        const pruebaSelect = document.getElementById('prueba');
+        pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Limpiar opciones anteriores
+        pruebas.forEach(prueba => {
+            const option = document.createElement('option');
+            option.value = prueba;
+            option.textContent = prueba;
+            pruebaSelect.appendChild(option);
+        });
+
+        document.getElementById('container-prueba').style.display = 'block'; // Mostrar el campo de prueba
+
     } catch (error) {
-        console.error('Error al cargar los años y pruebas:', error);
-        alert('Hubo un error al cargar los datos. Por favor, revisa la consola para más detalles.');
+        console.error('Error al cargar las pruebas:', error);
     }
 }
 
 function mostrarCampoCodigo() {
-    const pruebaSelect = document.getElementById('prueba');
-    document.getElementById('busqueda').style.display = pruebaSelect.value ? 'block' : 'none';
+    const prueba = document.getElementById('prueba').value;
+    if (prueba) {
+        document.getElementById('busqueda').style.display = 'block'; // Mostrar el campo de código
+    }
 }
 
 async function buscar() {
@@ -74,67 +89,116 @@ async function buscar() {
     }
 
     try {
-        // Buscar el archivo correspondiente en 'general.csv'
-        const generalResponse = await fetch('general.csv');
-        if (!generalResponse.ok) {
-            throw new Error(`Error al cargar el archivo general: ${generalResponse.statusText}`);
-        }
-        const generalData = await generalResponse.text();
-        const generalRows = generalData.split('\n').slice(1); // Saltar la cabecera
-
-        let archivo = null;
-        for (const row of generalRows) {
-            const columns = row.split(',').map(col => col.trim());
-            if (columns.length >= 3 && columns[0] === anio && columns[1] === prueba) {
-                archivo = columns[2]; // Asignar la columna ARCHIVO
-                break;
-            }
-        }
-
-        if (!archivo) {
-            resultado.innerHTML = 'No se encontró el archivo correspondiente para la combinación de año y prueba seleccionada.';
-            return;
-        }
-
-        // Realizar la búsqueda en el archivo correspondiente
-        const response = await fetch(`${archivo}.csv`);
+        const response = await fetch('datos.csv');
         if (!response.ok) {
-            throw new Error(`Error al cargar el archivo ${archivo}: ${response.statusText}`);
+            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n');
 
-        // Obtener índices de las columnas LLAVE y NOMBRE
-        const headerRow = rows[0].split(',').map(col => col.trim()); // Usar la primera fila como encabezado
-        const llaveIndex = headerRow.indexOf('LLAVE');
-        const nombreIndex = headerRow.indexOf('NOMBRE');
+        // Obtener los nombres de las columnas
+        const header = rows.shift().split(',').map(col => col.trim()); // Obtener la primera fila como encabezado
 
-        if (llaveIndex === -1 || nombreIndex === -1) {
-            // Mostrar las columnas existentes si LLAVE o NOMBRE no se encuentran
-            const columnasExistentes = headerRow.join(', ');
-            resultado.innerHTML = `Las columnas LLAVE o NOMBRE no se encontraron en el archivo.<br>Columnas disponibles: ${columnasExistentes}`;
-            return;
+        // Crear un mapa de nombres de columna a índices
+        const columnMap = header.reduce((map, column, index) => {
+            map[column] = index;
+            return map;
+        }, {});
+
+        let encontrado = false;
+
+        for (const row of rows) {
+            const columns = row.split(',').map(col => col.trim());
+            if (columns.length) {
+                const ANIO = columns[columnMap['ANIO']];
+                const PRUEBA = columns[columnMap['PRUEBA']];
+                const ID = columns[columnMap['ID']];
+                const NOMBRE = columns[columnMap['NOMBRE']];
+                const SEDE = columns[columnMap['SEDE']];
+                const GRADO = columns[columnMap['GRADO']];
+                const ARITMETICA = columns[columnMap['ARITMETICA']];
+                const ESTADISTICA = columns[columnMap['ESTADISTICA']];
+                const GEOMETRIA = columns[columnMap['GEOMETRIA']];
+                const EDU_FISICA = columns[columnMap['EDU. FISICA']];
+                const INGLES = columns[columnMap['INGLES']];
+                const ETICA = columns[columnMap['ETICA']];
+                const BIOLOGIA = columns[columnMap['BIOLOGIA']];
+                const FISICA = columns[columnMap['FISICA']];
+                const QUIMICA = columns[columnMap['QUIMICA']];
+                const INFORMATICA = columns[columnMap['INFORMATICA']];
+                const HISTORIA = columns[columnMap['HISTORIA']];
+                const GEOGRAFIA = columns[columnMap['GEOGRAFIA']];
+                const CONSTITUCION = columns[columnMap['CONSTITUCION']];
+                const FILOSOFIA = columns[columnMap['FILOSOFIA']];
+                const RELIGION = columns[columnMap['RELIGION']];
+                const LENGUACASTELLANA = columns[columnMap['LENGUACASTELLANA']];
+                const LECTURACRITICA = columns[columnMap['LECTURACRITICA']];
+                const ARTISTICA = columns[columnMap['ARTISTICA']];
+
+                if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
+                    // Construir la tabla con las notas
+                    const tablaNotas = `
+                        <table border="1" style="border-collapse: collapse; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 8px; text-align: left;">Asignatura</th>
+                                    <th style="padding: 8px; text-align: left;">Nota</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>ARITMETICA</td><td>${ARITMETICA}</td></tr>
+                                <tr><td>ESTADISTICA</td><td>${ESTADISTICA}</td></tr>
+                                <tr><td>GEOMETRIA</td><td>${GEOMETRIA}</td></tr>
+                                <tr><td>EDU. FISICA</td><td>${EDU_FISICA}</td></tr>
+                                <tr><td>INGLES</td><td>${INGLES}</td></tr>
+                                <tr><td>ETICA</td><td>${ETICA}</td></tr>
+                                <tr><td>BIOLOGIA</td><td>${BIOLOGIA}</td></tr>
+                                <tr><td>FISICA</td><td>${FISICA}</td></tr>
+                                <tr><td>QUIMICA</td><td>${QUIMICA}</td></tr>
+                                <tr><td>INFORMATICA</td><td>${INFORMATICA}</td></tr>
+                                <tr><td>HISTORIA</td><td>${HISTORIA}</td></tr>
+                                <tr><td>GEOGRAFIA</td><td>${GEOGRAFIA}</td></tr>
+                                <tr><td>CONSTITUCION</td><td>${CONSTITUCION}</td></tr>
+                                <tr><td>FILOSOFIA</td><td>${FILOSOFIA}</td></tr>
+                                <tr><td>RELIGION</td><td>${RELIGION}</td></tr>
+                                <tr><td>LENGUACASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
+                                <tr><td>LECTURACRITICA</td><td>${LECTURACRITICA}</td></tr>
+                                <tr><td>ARTISTICA</td><td>${ARTISTICA}</td></tr>
+                            </tbody>
+                        </table>
+                    `;
+
+                    resultado.innerHTML = `
+                        <h1>Resultados</h1>
+                        <div class="resultado-item">
+                            <span style="color: orange;">Alumno: </span>
+                            <span>${NOMBRE}</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span style="color: orange;">Sede: </span>
+                            <span>${SEDE}</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span style="color: orange;">Grado: </span>
+                            <span>${GRADO}</span>
+                        </div>
+                        <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
+                        ${tablaNotas}
+                    `;
+                    encontrado = true;
+                    break;
+                }
+            }
         }
 
-        // Filtrar por el código ingresado
-        const match = rows.slice(1).find(row => { // Empezar en la segunda fila para evitar el encabezado
-            const columns = row.split(',').map(col => col.trim());
-            return columns[llaveIndex] === codigo;
-        });
-
-        if (match) {
-            const columns = match.split(',').map(col => col.trim());
-            const nombre = columns[nombreIndex];
-            resultado.innerHTML = `
-                <hr style="border: 3px solid gray; width: 100%; height: 3px; margin: 0;">
-                <h1>Resultados</h1>
-                <p><span style="color: orange;">Alumno: </span><span style="color: black;">${nombre}</span></p>
-            `;
-        } else {
-            resultado.innerHTML = 'No se encontraron resultados para el código ingresado.';
+        if (!encontrado) {
+            resultado.innerHTML = 'Código no encontrado.';
         }
     } catch (error) {
-        console.error('Error durante la búsqueda:', error);
-        resultado.innerHTML = 'Hubo un error al realizar la búsqueda.';
+        console.error('Error al procesar la solicitud:', error);
+        resultado.innerHTML = 'Hubo un error al procesar la solicitud.';
     }
 }
+
+// Inicializar el año al cargar la página
+window.onload = cargarAnios;
