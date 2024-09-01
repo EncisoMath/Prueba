@@ -1,82 +1,27 @@
-// Función para cargar los años únicos desde el archivo CSV
-async function cargarAnios() {
+// Función para cargar los nombres de asignaturas desde el archivo NombreAsignatura.csv
+async function cargarNombresAsignaturas() {
     try {
-        const response = await fetch('datos.csv');
+        const response = await fetch('NombreAsignatura.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera
 
-        // Extraer años únicos
-        const anios = new Set();
+        // Crear un mapa de nombres de asignaturas
+        const nombresAsignaturasMap = {};
         rows.forEach(row => {
-            const columns = row.split(',');
-            if (columns.length) {
-                const [ANIO] = columns.map(col => col.trim()); // Extraer el valor de ANIO
-                anios.add(ANIO);
+            const [ASIGNATURA, NOMBREASIGNATURA] = row.split(',').map(col => col.trim());
+            if (ASIGNATURA && NOMBREASIGNATURA) {
+                nombresAsignaturasMap[ASIGNATURA] = NOMBREASIGNATURA;
             }
         });
 
-        const anoSelect = document.getElementById('ano');
-        anios.forEach(anio => {
-            const option = document.createElement('option');
-            option.value = anio;
-            option.textContent = anio;
-            anoSelect.appendChild(option);
-        });
+        return nombresAsignaturasMap;
 
     } catch (error) {
-        console.error('Error al cargar los años:', error);
-    }
-}
-
-// Función para cargar las pruebas según el año seleccionado
-async function cargarPruebas() {
-    const anio = document.getElementById('ano').value;
-    if (!anio) return;
-
-    try {
-        const response = await fetch('datos.csv');
-        if (!response.ok) {
-            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
-        }
-        const data = await response.text();
-        const rows = data.split('\n').slice(1); // Saltar la cabecera
-
-        // Extraer pruebas para el año seleccionado
-        const pruebas = new Set();
-        rows.forEach(row => {
-            const columns = row.split(',');
-            if (columns.length) {
-                const [ANIO, PRUEBA] = columns.map(col => col.trim()); // Extraer valores de ANIO y PRUEBA
-                if (ANIO === anio) {
-                    pruebas.add(PRUEBA);
-                }
-            }
-        });
-
-        const pruebaSelect = document.getElementById('prueba');
-        pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Limpiar opciones anteriores
-        pruebas.forEach(prueba => {
-            const option = document.createElement('option');
-            option.value = prueba;
-            option.textContent = prueba;
-            pruebaSelect.appendChild(option);
-        });
-
-        document.getElementById('container-prueba').style.display = 'block'; // Mostrar el campo de prueba
-
-    } catch (error) {
-        console.error('Error al cargar las pruebas:', error);
-    }
-}
-
-// Función para mostrar el campo de código cuando se selecciona una prueba
-function mostrarCampoCodigo() {
-    const prueba = document.getElementById('prueba').value;
-    if (prueba) {
-        document.getElementById('busqueda').style.display = 'block'; // Mostrar el campo de código
+        console.error('Error al cargar los nombres de asignaturas:', error);
+        return {};
     }
 }
 
@@ -93,6 +38,9 @@ async function buscar() {
     }
 
     try {
+        // Cargar nombres de asignaturas
+        const nombresAsignaturasMap = await cargarNombresAsignaturas();
+
         const response = await fetch('datos.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
@@ -101,7 +49,7 @@ async function buscar() {
         const rows = data.split('\n');
 
         // Obtener los nombres de las columnas
-        const header = rows.shift().split(',').map(col => col.trim()); // Obtener la primera fila como encabezado
+        const header = rows.shift().split(',').map(col => col.trim());
 
         // Crear un mapa de nombres de columna a índices
         const columnMap = header.reduce((map, column, index) => {
@@ -125,8 +73,9 @@ async function buscar() {
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     asignaturas.forEach(asignatura => {
+                        const nombreAsignatura = nombresAsignaturasMap[asignatura] || asignatura; // Buscar el nombre en el mapa
                         datosAsignaturas.push({
-                            nombre: asignatura,
+                            nombre: nombreAsignatura,
                             respuestasCorrectas: columns[columnMap[asignatura]],
                             cantidadPreguntas: columns[columnMap[`Q_${asignatura}`]],
                             resultado: columns[columnMap[`R_${asignatura}`]]
@@ -170,24 +119,6 @@ async function buscar() {
                             </tbody>
                         </table>
                     `;
-
-                    // Aquí se agrega el mensaje y la imagen del examen después de la tabla de notas
-                    const idAlumno = codigo; // El ID del alumno es el código ingresado
-                    const imgExtensions = ['jpg', 'png']; // Extensiones de imagen permitidas
-                    let imgExamen = '';
-
-                    // Buscar la imagen del examen según el ID
-                    for (const ext of imgExtensions) {
-                        imgExamen = `${idAlumno}.${ext}`;
-                        try {
-                            const response = await fetch(imgExamen);
-                            if (response.ok) {
-                                break; // Si encuentra la imagen, se sale del bucle
-                            }
-                        } catch (error) {
-                            console.error(`Imagen no encontrada: ${imgExamen}`);
-                        }
-                    }
 
                     // Añadir el mensaje y la imagen al HTML
                     resultado.innerHTML = `
