@@ -100,10 +100,46 @@ async function buscar() {
 
         for (const row of rows) {
             const columns = row.split(',');
-            if (columns.length >= 8) { // Asegurarse de que hay suficientes columnas
-                const [ANIO, PRUEBA, ID, NOTAFINAL, PROMEDIO, NOMBRE, SEDE, GRADO] = columns.map(col => col.trim()); // Eliminar espacios en blanco
+            if (columns.length >= 18) { // Asegurarse de que hay suficientes columnas
+                const [ANIO, PRUEBA, ID, NOTAFINAL, PROMEDIO, NOMBRE, SEDE, GRADO, 
+                        ARITMETICA, ESTADISTICA, GEOMETRIA, EDU_FISICA, INGLES, ETICA, 
+                        BIOLOGIA, FISICA, QUIMICA, INFORMATICA, HISTORIA, GEOGRAFIA, 
+                        CONSTITUCION, FILOSOFIA, RELIGION, LENGUACASTELLANA, LECTURACRITICA, 
+                        ARTISTICA] = columns.map(col => col.trim()); // Eliminar espacios en blanco
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
+                    // Construir la tabla con las notas
+                    const tablaNotas = `
+                        <table border="1" style="border-collapse: collapse; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 8px; text-align: left;">Asignatura</th>
+                                    <th style="padding: 8px; text-align: left;">Nota</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>ARITMETICA</td><td>${ARITMETICA}</td></tr>
+                                <tr><td>ESTADISTICA</td><td>${ESTADISTICA}</td></tr>
+                                <tr><td>GEOMETRIA</td><td>${GEOMETRIA}</td></tr>
+                                <tr><td>EDU. FISICA</td><td>${EDU_FISICA}</td></tr>
+                                <tr><td>INGLES</td><td>${INGLES}</td></tr>
+                                <tr><td>ETICA</td><td>${ETICA}</td></tr>
+                                <tr><td>BIOLOGIA</td><td>${BIOLOGIA}</td></tr>
+                                <tr><td>FISICA</td><td>${FISICA}</td></tr>
+                                <tr><td>QUIMICA</td><td>${QUIMICA}</td></tr>
+                                <tr><td>INFORMATICA</td><td>${INFORMATICA}</td></tr>
+                                <tr><td>HISTORIA</td><td>${HISTORIA}</td></tr>
+                                <tr><td>GEOGRAFIA</td><td>${GEOGRAFIA}</td></tr>
+                                <tr><td>CONSTITUCION</td><td>${CONSTITUCION}</td></tr>
+                                <tr><td>FILOSOFIA</td><td>${FILOSOFIA}</td></tr>
+                                <tr><td>RELIGION</td><td>${RELIGION}</td></tr>
+                                <tr><td>LENGUACASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
+                                <tr><td>LECTURACRITICA</td><td>${LECTURACRITICA}</td></tr>
+                                <tr><td>ARTISTICA</td><td>${ARTISTICA}</td></tr>
+                            </tbody>
+                        </table>
+                    `;
+
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
                         <div class="resultado-item">
@@ -119,9 +155,7 @@ async function buscar() {
                             <span>${GRADO}</span>
                         </div>
                         <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
-                        <div>
-                            Holi, esperando instrucciones
-                        </div>
+                        ${tablaNotas}
                     `;
                     encontrado = true;
                     break;
