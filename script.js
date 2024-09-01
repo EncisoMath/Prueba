@@ -119,7 +119,7 @@ async function buscar() {
                 const ARITMETICA = columns[columnMap['ARITMETICA']];
                 const ESTADISTICA = columns[columnMap['ESTADISTICA']];
                 const GEOMETRIA = columns[columnMap['GEOMETRIA']];
-                const EDU_FISICA = columns[columnMap['EDU. FISICA']];
+                const EDU_FISICA = columns[columnMap['EDUFISICA']];
                 const INGLES = columns[columnMap['INGLES']];
                 const ETICA = columns[columnMap['ETICA']];
                 const BIOLOGIA = columns[columnMap['BIOLOGIA']];
@@ -146,24 +146,24 @@ async function buscar() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>ARITMETICA</td><td>${ARITMETICA}</td></tr>
-                                <tr><td>ESTADISTICA</td><td>${ESTADISTICA}</td></tr>
-                                <tr><td>GEOMETRIA</td><td>${GEOMETRIA}</td></tr>
-                                <tr><td>EDU. FISICA</td><td>${EDU_FISICA}</td></tr>
-                                <tr><td>INGLES</td><td>${INGLES}</td></tr>
-                                <tr><td>ETICA</td><td>${ETICA}</td></tr>
-                                <tr><td>BIOLOGIA</td><td>${BIOLOGIA}</td></tr>
-                                <tr><td>FISICA</td><td>${FISICA}</td></tr>
-                                <tr><td>QUIMICA</td><td>${QUIMICA}</td></tr>
-                                <tr><td>INFORMATICA</td><td>${INFORMATICA}</td></tr>
-                                <tr><td>HISTORIA</td><td>${HISTORIA}</td></tr>
-                                <tr><td>GEOGRAFIA</td><td>${GEOGRAFIA}</td></tr>
-                                <tr><td>CONSTITUCION</td><td>${CONSTITUCION}</td></tr>
-                                <tr><td>FILOSOFIA</td><td>${FILOSOFIA}</td></tr>
-                                <tr><td>RELIGION</td><td>${RELIGION}</td></tr>
-                                <tr><td>LENGUACASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
-                                <tr><td>LECTURACRITICA</td><td>${LECTURACRITICA}</td></tr>
-                                <tr><td>ARTISTICA</td><td>${ARTISTICA}</td></tr>
+                                <tr><td>Aritmética</td><td>${ARITMETICA}</td></tr>
+                                <tr><td>Estadística</td><td>${ESTADISTICA}</td></tr>
+                                <tr><td>Geometría</td><td>${GEOMETRIA}</td></tr>
+                                <tr><td>Edu. Física</td><td>${EDU_FISICA}</td></tr>
+                                <tr><td>Inglés</td><td>${INGLES}</td></tr>
+                                <tr><td>Ética</td><td>${ETICA}</td></tr>
+                                <tr><td>Biología</td><td>${BIOLOGIA}</td></tr>
+                                <tr><td>Procesos Físicos</td><td>${FISICA}</td></tr>
+                                <tr><td>Procesos Químicos</td><td>${QUIMICA}</td></tr>
+                                <tr><td>Informática</td><td>${INFORMATICA}</td></tr>
+                                <tr><td>Historia</td><td>${HISTORIA}</td></tr>
+                                <tr><td>Geografía</td><td>${GEOGRAFIA}</td></tr>
+                                <tr><td>Constitución</td><td>${CONSTITUCION}</td></tr>
+                                <tr><td>Filosofía</td><td>${FILOSOFIA}</td></tr>
+                                <tr><td>Religión</td><td>${RELIGION}</td></tr>
+                                <tr><td>Lengua Castellana</td><td>${LENGUACASTELLANA}</td></tr>
+                                <tr><td>Lectura Crítica</td><td>${LECTURACRITICA}</td></tr>
+                                <tr><td>Artística</td><td>${ARTISTICA}</td></tr>
                             </tbody>
                         </table>
                     `;
