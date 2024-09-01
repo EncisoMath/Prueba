@@ -148,7 +148,7 @@ async function buscar() {
                                 ${datosAsignaturas.map(asignatura => `
                                     <tr>
                                         <td style="padding: 8px; text-align: center;">
-                                            <img src="${asignatura.nombre}.png" alt="${asignatura.nombre}" style="max-width: 100px; max-height: 100px;">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" class="resultado-icon">
                                         </td>
                                         <td style="padding: 8px;">${asignatura.nombre}</td>
                                         <td style="padding: 8px;">
