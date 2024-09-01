@@ -104,10 +104,10 @@ async function buscar() {
             throw new Error(`Error al cargar el archivo ${archivo}: ${response.statusText}`);
         }
         const data = await response.text();
-        const rows = data.split('\n').slice(1); // Saltar la cabecera si existe
+        const rows = data.split('\n');
 
         // Obtener índices de las columnas LLAVE y NOMBRE
-        const headerRow = rows[0].split(',').map(col => col.trim());
+        const headerRow = rows[0].split(',').map(col => col.trim()); // Usar la primera fila como encabezado
         const llaveIndex = headerRow.indexOf('LLAVE');
         const nombreIndex = headerRow.indexOf('NOMBRE');
 
@@ -119,7 +119,7 @@ async function buscar() {
         }
 
         // Filtrar por el código ingresado
-        const match = rows.find(row => {
+        const match = rows.slice(1).find(row => { // Empezar en la segunda fila para evitar el encabezado
             const columns = row.split(',').map(col => col.trim());
             return columns[llaveIndex] === codigo;
         });
