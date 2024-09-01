@@ -146,12 +146,19 @@ async function buscar() {
                             <tbody>
                                 ${datosAsignaturas.map(asignatura => `
                                     <tr>
-                                        <td style="padding: 8px; text-align: center;">
-                                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                                <img src="https://raw.githubusercontent.com/EncisoMath/Prueba/main/${encodeURIComponent(asignatura.nombre)}.png" style="width: 60px; height: 60px;" onerror="this.src='https://via.placeholder.com/60';">
-                                                <span>Hola ${asignatura.nombre}</span>
-                                            </div>
-                                        </td>
+<td style="padding: 8px; text-align: center;">
+    <span style="display: block;">${asignatura.nombre}</span>
+    <span>
+        ${(() => {
+            const ImageToLoad = "https://raw.githubusercontent.com/EncisoMath/Prueba/main/" + ${asignatura.nombre} + ".png";
+            return `<img 
+                src="${ImageToLoad}"
+                style="width: 60px; height: 60px; display: block; margin: 0 auto;"
+                onerror="this.src='https://via.placeholder.com/60';"
+                alt="${asignatura.nombre}">`;
+        })()}
+    </span>
+</td>
                                         <td style="padding: 8px;">
                                             <span>${asignatura.respuestasCorrectas}</span>
                                             <span style="font-size: 15px;"> / </span> <!-- Ajusta el tamaño del "/" -->
