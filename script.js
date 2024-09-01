@@ -80,6 +80,34 @@ function mostrarCampoCodigo() {
     }
 }
 
+
+async function cargarNombresAsignaturas() {
+    try {
+        const response = await fetch('NombreAsignatura.csv');
+        if (!response.ok) {
+            throw new Error(`Error al cargar NombreAsignatura.csv: ${response.statusText}`);
+        }
+        const data = await response.text();
+        const rows = data.split('\n').slice(1); // Saltar la cabecera
+
+        // Crear un mapa de ASIGNATURA a NOMBREASIGNATURA
+        const nombreAsignaturaMap = new Map();
+        rows.forEach(row => {
+            const [ASIGNATURA, NOMBREASIGNATURA] = row.split(',').map(col => col.trim());
+            if (ASIGNATURA && NOMBREASIGNATURA) {
+                nombreAsignaturaMap.set(ASIGNATURA, NOMBREASIGNATURA);
+            }
+        });
+
+        return nombreAsignaturaMap;
+
+    } catch (error) {
+        console.error('Error al cargar los nombres de asignaturas:', error);
+        return new Map();
+    }
+}
+
+
 // Función para buscar y mostrar los resultados del alumno
 async function buscar() {
     const codigo = document.getElementById('codigo').value.trim();
