@@ -106,10 +106,33 @@ async function buscar() {
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera si existe
 
-        // Filtrar por el código ingresado
-        const match = rows.find(row => row.startsWith(codigo));
+        // Buscar el código en la columna LLAVE
+        const header = rows.shift().split(',').map(col => col.trim());
+        const llaveIndex = header.indexOf('LLAVE');
+        const nombreIndex = header.indexOf('NOMBRE');
+        
+        if (llaveIndex === -1 || nombreIndex === -1) {
+            resultado.innerHTML = 'Las columnas LLAVE o NOMBRE no se encontraron en el archivo.';
+            return;
+        }
+
+        const match = rows.find(row => {
+            const columns = row.split(',').map(col => col.trim());
+            return columns[llaveIndex] === codigo; // Comparar con la columna LLAVE
+        });
+
+        // Mostrar resultados
         if (match) {
-            resultado.innerHTML = `<div class="resultado-item">${match}</div>`;
+            const columns = match.split(',').map(col => col.trim());
+            const nombre = columns[nombreIndex]; // Obtener el nombre de la columna NOMBRE
+
+            resultado.innerHTML = `
+                <h1>Resultados</h1>
+                <hr style="border: 3px solid gray;">
+                <div class="resultado-item">
+                    <p><strong>Nombre:</strong> ${nombre}</p>
+                </div>
+            `;
         } else {
             resultado.innerHTML = 'No se encontraron resultados para el código ingresado.';
         }
