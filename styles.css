@@ -38,6 +38,11 @@ body {
     font-family: 'NumeroFont', Arial, sans-serif; /* Aplica la fuente NumeroFont con alternativas */
 }
 
+.bold-font {
+    font-family: 'BoldFont', sans-serif; /* Cambia 'BoldFont' por el nombre real de tu fuente */
+    font-weight: bold;
+}
+
 .logo {
     position: absolute;
     top: 0;
