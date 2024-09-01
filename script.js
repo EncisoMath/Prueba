@@ -150,13 +150,11 @@ async function buscar() {
                                             <div style="display: flex; flex-direction: column; align-items: center;">
                                                 ${(() => {
                                                     // Construir el nombre del archivo y la URL completa
-                                                    const imageFileName = `${asignatura.nombre}.png`;
-                                                    const ImageToLoad = `https://raw.githubusercontent.com/EncisoMath/Prueba/main/${imageFileName}`;
-                                        
+                                                    const Icon = `${asignatura.nombre}.png`;                                        
                                                     // Devolver el HTML para la imagen
                                                     return `<img 
-                                                        src="${ImageToLoad}"
-                                                        style="width: 60px; height: 60px;"
+                                                        src="${Icon}"
+                                                        style="width: 50px; height: 50px;"
                                                         onerror="this.src='https://via.placeholder.com/60';"
                                                         alt="${asignatura.nombre}">`;
                                                 })()}
