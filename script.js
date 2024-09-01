@@ -190,10 +190,6 @@ async function buscar() {
                             <div class="resultado-right">
                                 <div class="resultado-item">
                                 <span class="bold-font" style="font-size: 40px;">Ranking</span>
-                                <div class="resultado-item">
-                                    <img src="RANKING.png" alt="Ranking" style="width: 50px; height: 50px; margin-left: 10px;">
-                                    <span class="bold-font" style="font-size: 30px;">1</span>
-                                </div>
                             </div>
                         </div>
                         <hr class="linea-separadora">
