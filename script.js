@@ -1,85 +1,3 @@
-// Función para cargar los años únicos desde el archivo CSV
-async function cargarAnios() {
-    try {
-        const response = await fetch('datos.csv');
-        if (!response.ok) {
-            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
-        }
-        const data = await response.text();
-        const rows = data.split('\n').slice(1); // Saltar la cabecera
-
-        // Extraer años únicos
-        const anios = new Set();
-        rows.forEach(row => {
-            const columns = row.split(',');
-            if (columns.length) {
-                const [ANIO] = columns.map(col => col.trim()); // Extraer el valor de ANIO
-                anios.add(ANIO);
-            }
-        });
-
-        const anoSelect = document.getElementById('ano');
-        anios.forEach(anio => {
-            const option = document.createElement('option');
-            option.value = anio;
-            option.textContent = anio;
-            anoSelect.appendChild(option);
-        });
-
-    } catch (error) {
-        console.error('Error al cargar los años:', error);
-    }
-}
-
-// Función para cargar las pruebas según el año seleccionado
-async function cargarPruebas() {
-    const anio = document.getElementById('ano').value;
-    if (!anio) return;
-
-    try {
-        const response = await fetch('datos.csv');
-        if (!response.ok) {
-            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
-        }
-        const data = await response.text();
-        const rows = data.split('\n').slice(1); // Saltar la cabecera
-
-        // Extraer pruebas para el año seleccionado
-        const pruebas = new Set();
-        rows.forEach(row => {
-            const columns = row.split(',');
-            if (columns.length) {
-                const [ANIO, PRUEBA] = columns.map(col => col.trim()); // Extraer valores de ANIO y PRUEBA
-                if (ANIO === anio) {
-                    pruebas.add(PRUEBA);
-                }
-            }
-        });
-
-        const pruebaSelect = document.getElementById('prueba');
-        pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Limpiar opciones anteriores
-        pruebas.forEach(prueba => {
-            const option = document.createElement('option');
-            option.value = prueba;
-            option.textContent = prueba;
-            pruebaSelect.appendChild(option);
-        });
-
-        document.getElementById('container-prueba').style.display = 'block'; // Mostrar el campo de prueba
-
-    } catch (error) {
-        console.error('Error al cargar las pruebas:', error);
-    }
-}
-
-// Función para mostrar el campo de código cuando se selecciona una prueba
-function mostrarCampoCodigo() {
-    const prueba = document.getElementById('prueba').value;
-    if (prueba) {
-        document.getElementById('busqueda').style.display = 'block'; // Mostrar el campo de código
-    }
-}
-
 // Función para buscar y mostrar los resultados del alumno
 async function buscar() {
     const codigo = document.getElementById('codigo').value.trim();
@@ -111,6 +29,14 @@ async function buscar() {
 
         let encontrado = false;
 
+        // Definir las asignaturas y sus campos
+        const asignaturas = [
+            { nombre: 'ARITMETICA', Q: 'Q_ARITMETICA', R: 'R_ARITMETICA' },
+            { nombre: 'ESTADISTICA', Q: 'Q_ESTADISTICA', R: 'R_ESTADISTICA' },
+            { nombre: 'GEOMETRIA', Q: 'Q_GEOMETRIA', R: 'R_GEOMETRIA' },
+            // Añade más asignaturas aquí
+        ];
+
         for (const row of rows) {
             const columns = row.split(',').map(col => col.trim());
             if (columns.length) {
@@ -120,20 +46,10 @@ async function buscar() {
                 const NOMBRE = columns[columnMap['NOMBRE']];
                 const SEDE = columns[columnMap['SEDE']];
                 const GRADO = columns[columnMap['GRADO']];
-                const ARITMETICA = columns[columnMap['ARITMETICA']];
-                const Q_ARITMETICA = columns[columnMap['Q_ARITMETICA']];
-                const R_ARITMETICA = columns[columnMap['R_ARITMETICA']];
-                const ESTADISTICA = columns[columnMap['ESTADISTICA']];
-                const Q_ESTADISTICA = columns[columnMap['Q_ESTADISTICA']];
-                const R_ESTADISTICA = columns[columnMap['R_ESTADISTICA']];
-                const GEOMETRIA = columns[columnMap['GEOMETRIA']];
-                const Q_GEOMETRIA = columns[columnMap['Q_GEOMETRIA']];
-                const R_GEOMETRIA = columns[columnMap['R_GEOMETRIA']];
-                // Continúa para las demás asignaturas...
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     // Construir la tabla con las notas
-                    const tablaNotas = `
+                    let tablaNotas = `
                         <table border="1" style="border-collapse: collapse; width: 100%;">
                             <thead>
                                 <tr>
@@ -143,34 +59,28 @@ async function buscar() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td style="padding: 8px;">ARITMETICA</td>
-                                    <td style="padding: 8px;">
-                                        <span style="font-size: 25px;">${ARITMETICA}</span>
-                                        /
-                                        <span style="font-size: 15px;">${Q_ARITMETICA}</span>
-                                    </td>
-                                    <td style="padding: 8px;">${R_ARITMETICA}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px;">ESTADISTICA</td>
-                                    <td style="padding: 8px;">
-                                        <span style="font-size: 25px;">${ESTADISTICA}</span>
-                                        /
-                                        <span style="font-size: 15px;">${Q_ESTADISTICA}</span>
-                                    </td>
-                                    <td style="padding: 8px;">${R_ESTADISTICA}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px;">GEOMETRIA</td>
-                                    <td style="padding: 8px;">
-                                        <span style="font-size: 25px;">${GEOMETRIA}</span>
-                                        /
-                                        <span style="font-size: 15px;">${Q_GEOMETRIA}</span>
-                                    </td>
-                                    <td style="padding: 8px;">${R_GEOMETRIA}</td>
-                                </tr>
-                                <!-- Añade más filas para otras asignaturas aquí -->
+                    `;
+
+                    // Usar un bucle para añadir filas para cada asignatura
+                    for (const asignatura of asignaturas) {
+                        const valor = columns[columnMap[asignatura.nombre]];
+                        const valorQ = columns[columnMap[asignatura.Q]];
+                        const valorR = columns[columnMap[asignatura.R]];
+
+                        tablaNotas += `
+                            <tr>
+                                <td style="padding: 8px;">${asignatura.nombre}</td>
+                                <td style="padding: 8px;">
+                                    <span style="font-size: 25px;">${valor}</span>
+                                    /
+                                    <span style="font-size: 15px;">${valorQ}</span>
+                                </td>
+                                <td style="padding: 8px;">${valorR}</td>
+                            </tr>
+                        `;
+                    }
+
+                    tablaNotas += `
                             </tbody>
                         </table>
                     `;
@@ -206,10 +116,3 @@ async function buscar() {
         resultado.innerHTML = 'Hubo un error al procesar la solicitud.';
     }
 }
-
-// Inicializar el año al cargar la página
-window.onload = () => {
-    cargarAnios();
-
-    document.getElementById('prueba').addEventListener('change', mostrarCampoCodigo);
-};
