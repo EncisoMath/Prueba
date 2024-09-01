@@ -177,11 +177,11 @@ async function buscar() {
                             <!-- Bloque izquierdo -->
                             <div class="resultado-left">
                                 <div class="resultado-item">
-                                    <span style="color: orange;">Alumno: </span>
+                                    <span class="bold-font" style="color: orange;">Alumno: </span>
                                     <span>${NOMBRE}</span>
                                 </div>
                                 <div class="resultado-item">
-                                    <span style="color: orange;">Grado y Sede: </span>
+                                    <span class="bold-font" style="color: orange;">Grado y Sede: </span>
                                     <span>${GRADO} ${SEDE}</span>
                                 </div>
                             </div>
@@ -189,8 +189,8 @@ async function buscar() {
                             <!-- Bloque derecho -->
                             <div class="resultado-right">
                                 <div class="resultado-item">
-                                    <div>Ranking</div>
-                                    <div>1</div>
+                                <span class="bold-font">Ranking</span>
+                                <div class="bold-font" style="font-size: 40px;">1</div>
                                 </div>
                             </div>
                         </div>
