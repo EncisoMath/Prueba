@@ -148,9 +148,11 @@ async function buscar() {
                                 ${datosAsignaturas.map(asignatura => `
                                     <tr>
                                         <td style="padding: 8px; text-align: center;">
-                                            <img src="${asignatura.nombre}.png" alt="${asignatura.nombre}" style="max-width: 100px; max-height: 100px;">
+                                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                                <img src="https://raw.githubusercontent.com/EncisoMath/Prueba/main/estadistica.png" style="width: 60px; height: 60px;">
+                                                <span>${asignatura.nombre}</span>
+                                            </div>
                                         </td>
-                                        <td style="padding: 8px;">${asignatura.nombre}</td>
                                         <td style="padding: 8px;">
                                             <span>${asignatura.respuestasCorrectas}</span>
                                             <span style="font-size: 15px;"> / </span> <!-- Ajusta el tamaño del "/" -->
