@@ -146,7 +146,7 @@ async function buscar() {
                             <tbody>
                                 ${datosAsignaturas.map(asignatura => `
                                     <tr>
-                                        <td style="padding: 8px; text-align: center;font-size: 15px">
+                                        <td style="padding: 8px; text-align: center;font-size: 18px">
                                             <div style="display: flex; flex-direction: column; align-items: center;">
                                                 ${(() => {
                                                     // Construir el nombre del archivo y la URL completa
