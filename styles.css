@@ -75,7 +75,7 @@ input[type="text"], select, button {
     text-align: center;
 }
 
-/* Estilo general del bloque de resultados */
+/* Contenedor principal para los resultados */
 .resultados-container {
     display: flex;
     justify-content: space-between;
@@ -83,6 +83,7 @@ input[type="text"], select, button {
     width: 100%;
     max-width: 1000px; /* Ajusta según el ancho deseado */
     margin: 0 auto; /* Centra el bloque en la página */
+    margin-bottom: 20px; /* Espacio debajo del contenedor */
 }
 
 /* Estilo del bloque izquierdo (Alumno, Sede y Grado) */
@@ -102,6 +103,20 @@ input[type="text"], select, button {
     margin-bottom: 10px;
 }
 
+/* Estilo de la línea separadora */
+.linea-separadora {
+    border: 3px solid red;
+    margin: 20px 0; /* Espacio arriba y abajo de la línea */
+    width: 100%; /* Ancho completo del contenedor */
+}
+
+/* Estilo de la tabla */
+.tabla-notas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 25px;
+}
+
 .resultado-label {
     font-family: 'BoldFont'; /* Usar la fuente Bold para las etiquetas */
     font-weight: bold;
@@ -118,11 +133,6 @@ input[type="text"], select, button {
     border-left: 2px solid #000;
     height: 40px;
     margin: 0 10px;
-}
-
-.linea-separadora {
-    border-top: 2px solid #000;
-    margin: 20px 0;
 }
 
 .credits {
