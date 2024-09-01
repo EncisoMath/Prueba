@@ -171,8 +171,7 @@ async function buscar() {
                         </table>
                     `;
 
-
-                    resultado.innerHTML = 
+                    resultado.innerHTML = `
                         <h1>Resultados</h1>
                         <div class="resultado-item">
                             <span style="color: orange;">Alumno: </span>
@@ -188,7 +187,7 @@ async function buscar() {
                         </div>
                         <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
                         ${tablaNotas}
-                    ;
+                    `;
                     encontrado = true;
                     break;
                 }
