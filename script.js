@@ -14,9 +14,9 @@ async function cargarAniosYPruebas() {
         const pruebasPorAnio = {};
 
         rows.forEach(row => {
-            const columns = row.split(',');
+            const columns = row.split(',').map(col => col.trim());
             if (columns.length >= 3) { // Verificar que al menos tenga 3 columnas
-                const [ANIO, PRUEBA] = columns.slice(0, 2).map(col => col.trim());
+                const [ANIO, PRUEBA] = columns.slice(0, 2);
                 anios.add(ANIO);
                 
                 if (!pruebasPorAnio[ANIO]) {
@@ -87,7 +87,7 @@ async function buscar() {
         let archivo = null;
         for (const row of generalRows) {
             const columns = row.split(',').map(col => col.trim());
-            if (columns[0] === anio && columns[1] === prueba) {
+            if (columns.length >= 3 && columns[0] === anio && columns[1] === prueba) {
                 archivo = columns[2]; // Asignar la columna ARCHIVO
                 break;
             }
@@ -106,34 +106,29 @@ async function buscar() {
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera si existe
 
-        // Mostrar encabezado para depuración
-        const header = rows.shift().split(',').map(col => col.trim());
-        console.log('Encabezado del archivo:', header); // Mostrar en consola
-
-        const llaveIndex = header.indexOf('LLAVE');
-        const nombreIndex = header.indexOf('NOMBRE');
+        // Obtener índices de las columnas LLAVE y NOMBRE
+        const headerRow = rows[0].split(',').map(col => col.trim());
+        const llaveIndex = headerRow.indexOf('LLAVE');
+        const nombreIndex = headerRow.indexOf('NOMBRE');
 
         if (llaveIndex === -1 || nombreIndex === -1) {
             resultado.innerHTML = 'Las columnas LLAVE o NOMBRE no se encontraron en el archivo.';
             return;
         }
 
-        // Buscar el código en la columna LLAVE
+        // Filtrar por el código ingresado
         const match = rows.find(row => {
             const columns = row.split(',').map(col => col.trim());
-            return columns[llaveIndex] === codigo; // Comparar con la columna LLAVE
+            return columns[llaveIndex] === codigo;
         });
 
-        // Mostrar resultados
         if (match) {
             const columns = match.split(',').map(col => col.trim());
-            const nombre = columns[nombreIndex]; // Obtener el nombre de la columna NOMBRE
-
+            const nombre = columns[nombreIndex];
             resultado.innerHTML = `
-                <h1>Resultados</h1>
-                <hr style="border: 3px solid gray;">
                 <div class="resultado-item">
-                    <p><strong>Nombre:</strong> ${nombre}</p>
+                    <hr style="border: 3px solid gray; width: 100%;">
+                    <p>Nombre: ${nombre}</p>
                 </div>
             `;
         } else {
