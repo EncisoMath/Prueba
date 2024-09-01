@@ -149,10 +149,10 @@ const tablaNotas = `
                     <td style="padding: 25px;">${asignatura.nombre}</td>
                     <td style="padding: 8px;">
                         <span style="font-size: 25px;">${asignatura.respuestasCorrectas}</span>
-                        <span style="font-size: 15px;"> 
-                        <span style="font-size: 25px;">${asignatura.cantidadPreguntas}</span>
+                        <span style="font-size: 15px;"> / </span>
+                        <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span>
                     </td>
-                    <td style="padding: 8px;">${asignatura.resultado}</td>
+                    <td style="padding: 25px;">${asignatura.resultado}</td>
                 </tr>
             `).join('')}
         </tbody>
