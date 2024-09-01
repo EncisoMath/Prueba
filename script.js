@@ -149,8 +149,8 @@ const tablaNotas = `
                     <td style="padding: 8px;">${asignatura.nombre}</td>
                     <td style="padding: 8px;">
                         <span>${asignatura.respuestasCorrectas}</span>
-                        <span style="font-size: 10px;"> / </span> <!-- Ajusta el tamaño del "/" -->
-                        <span style="font-size: 10px;">${asignatura.cantidadPreguntas}</span> <!-- Ajusta el tamaño de cantidadPreguntas -->
+                        <span style="font-size: 12px;"> / </span> 
+                        <span style="font-size: 12px;">${asignatura.cantidadPreguntas}</span> 
                     </td>
                     <td style="padding: 8px;">${asignatura.resultado}</td>
                 </tr>
