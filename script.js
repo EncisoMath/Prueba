@@ -1,3 +1,4 @@
+// Función para cargar los años únicos desde el archivo CSV
 async function cargarAnios() {
     try {
         const response = await fetch('datos.csv');
@@ -30,6 +31,7 @@ async function cargarAnios() {
     }
 }
 
+// Función para cargar las pruebas según el año seleccionado
 async function cargarPruebas() {
     const anio = document.getElementById('ano').value;
     if (!anio) return;
@@ -70,6 +72,7 @@ async function cargarPruebas() {
     }
 }
 
+// Función para mostrar el campo de código cuando se selecciona una prueba
 function mostrarCampoCodigo() {
     const prueba = document.getElementById('prueba').value;
     if (prueba) {
@@ -77,6 +80,7 @@ function mostrarCampoCodigo() {
     }
 }
 
+// Función para buscar y mostrar los resultados del alumno
 async function buscar() {
     const codigo = document.getElementById('codigo').value.trim();
     const resultado = document.getElementById('resultado');
@@ -161,8 +165,8 @@ async function buscar() {
                                 <tr><td>CONSTITUCION</td><td>${CONSTITUCION}</td></tr>
                                 <tr><td>FILOSOFIA</td><td>${FILOSOFIA}</td></tr>
                                 <tr><td>RELIGION</td><td>${RELIGION}</td></tr>
-                                <tr><td>LENGUACASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
-                                <tr><td>LECTURACRITICA</td><td>${LECTURACRITICA}</td></tr>
+                                <tr><td>LENGUA CASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
+                                <tr><td>LECTURA CRITICA</td><td>${LECTURACRITICA}</td></tr>
                                 <tr><td>ARTISTICA</td><td>${ARTISTICA}</td></tr>
                             </tbody>
                         </table>
@@ -201,4 +205,8 @@ async function buscar() {
 }
 
 // Inicializar el año al cargar la página
-window.onload = cargarAnios;
+window.onload = () => {
+    cargarAnios();
+
+    document.getElementById('prueba').addEventListener('change', mostrarCampoCodigo);
+};
