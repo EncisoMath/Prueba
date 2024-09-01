@@ -119,7 +119,7 @@ async function buscar() {
                 const ARITMETICA = columns[columnMap['ARITMETICA']];
                 const ESTADISTICA = columns[columnMap['ESTADISTICA']];
                 const GEOMETRIA = columns[columnMap['GEOMETRIA']];
-                const EDU_FISICA = columns[columnMap['EDUFISICA']];
+                const EDUFISICA = columns[columnMap['EDUFISICA']];
                 const INGLES = columns[columnMap['INGLES']];
                 const ETICA = columns[columnMap['ETICA']];
                 const BIOLOGIA = columns[columnMap['BIOLOGIA']];
@@ -161,8 +161,8 @@ async function buscar() {
                                 <tr><td>CONSTITUCION</td><td>${CONSTITUCION}</td></tr>
                                 <tr><td>FILOSOFIA</td><td>${FILOSOFIA}</td></tr>
                                 <tr><td>RELIGION</td><td>${RELIGION}</td></tr>
-                                <tr><td>LENGUACASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
-                                <tr><td>LECTURACRITICA</td><td>${LECTURACRITICA}</td></tr>
+                                <tr><td>LENGUA CASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
+                                <tr><td>LECTURA CRITICA</td><td>${LECTURACRITICA}</td></tr>
                                 <tr><td>ARTISTICA</td><td>${ARTISTICA}</td></tr>
                             </tbody>
                         </table>
