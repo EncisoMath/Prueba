@@ -1,6 +1,6 @@
 async function cargarAnios() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/usuario/repositorio/rama/datos.csv');
+        const response = await fetch('datos.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
@@ -35,7 +35,7 @@ async function cargarPruebas() {
     if (!anio) return;
 
     try {
-        const response = await fetch('https://raw.githubusercontent.com/usuario/repositorio/rama/datos.csv');
+        const response = await fetch('datos.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
