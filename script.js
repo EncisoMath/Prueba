@@ -171,6 +171,25 @@ async function buscar() {
                         </table>
                     `;
 
+                    // Aquí se agrega el mensaje y la imagen del examen después de la tabla de notas
+                    const idAlumno = codigo; // El ID del alumno es el código ingresado
+                    const imgExtensions = ['jpg', 'png']; // Extensiones de imagen permitidas
+                    let imgExamen = '';
+
+                    // Buscar la imagen del examen según el ID
+                    for (const ext of imgExtensions) {
+                        imgExamen = `${idAlumno}.${ext}`;
+                        try {
+                            const response = await fetch(imgExamen);
+                            if (response.ok) {
+                                break; // Si encuentra la imagen, se sale del bucle
+                            }
+                        } catch (error) {
+                            console.error(`Imagen no encontrada: ${imgExamen}`);
+                        }
+                    }
+
+                    // Añadir el mensaje y la imagen al HTML
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
                         <div class="resultados-container">
@@ -190,17 +209,18 @@ async function buscar() {
                             <div class="resultado-right">
                                 <div class="bold-font" style="color: orange; font-size: 35px; margin-top: 0;">Ranking</div>
                                 <div class="bold-font" style="font-size: 32px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                    <img src="RANKING.png" style="width: 35px; height: 35px;">
-                                    <span>1</span>
+                                    <img src="https://img.icons8.com/ios-glyphs/30/trophy.png" alt="Trophy icon" width="30px">
+                                    <span>2/3</span>
                                 </div>
                             </div>
-                            </div>
                         </div>
-                        <hr class="linea-separadora">
-                        <div class="tabla-notas">
-                            ${tablaNotas}
-                        </div>
+                        <hr>
+                        <h1>Aquí está tu examen:</h1>
+                        <img src="${imgExamen}" onerror="this.src='https://via.placeholder.com/150';" alt="Examen del alumno">
+                        <hr>
+                        ${tablaNotas}
                     `;
+
                     encontrado = true;
                     break;
                 }
@@ -208,17 +228,13 @@ async function buscar() {
         }
 
         if (!encontrado) {
-            resultado.innerHTML = 'Código no encontrado.';
+            resultado.innerHTML = 'No se encontraron resultados para el código ingresado.';
         }
+
     } catch (error) {
-        console.error('Error al procesar la solicitud:', error);
-        resultado.innerHTML = 'Hubo un error al procesar la solicitud.';
+        console.error('Error al buscar resultados:', error);
     }
 }
 
-// Inicializar el año al cargar la página
-window.onload = () => {
-    cargarAnios();
-
-    document.getElementById('prueba').addEventListener('change', mostrarCampoCodigo);
-};
+// Cargar los años al cargar la página
+document.addEventListener('DOMContentLoaded', cargarAnios);
