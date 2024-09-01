@@ -173,7 +173,7 @@ async function buscar() {
 
 
                     resultado.innerHTML = `
-                        <h1>Resultados</h1>
+                        <h1>Resultados 1234567890</h1>
                         <div class="resultado-item">
                             <span style="color: orange;">Alumno: </span>
                             <span>${NOMBRE}</span>
