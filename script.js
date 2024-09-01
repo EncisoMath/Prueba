@@ -1,22 +1,30 @@
-async function cargarAnios() {
+async function cargarAniosYPruebas() {
     try {
-        const response = await fetch('datos.csv');
+        const response = await fetch('general.csv');
         if (!response.ok) {
-            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
+            throw new Error(`Error al cargar el archivo general: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera
 
-        // Extraer años únicos
+        // Estructuras para almacenar años y pruebas únicos
         const anios = new Set();
+        const pruebasPorAnio = {};
+
         rows.forEach(row => {
             const columns = row.split(',');
-            if (columns.length) {
-                const [ANIO] = columns.map(col => col.trim()); // Extraer el valor de ANIO
+            if (columns.length >= 3) { // Verificar que al menos tenga 3 columnas
+                const [ANIO, PRUEBA] = columns.slice(0, 2).map(col => col.trim());
                 anios.add(ANIO);
+                
+                if (!pruebasPorAnio[ANIO]) {
+                    pruebasPorAnio[ANIO] = new Set();
+                }
+                pruebasPorAnio[ANIO].add(PRUEBA);
             }
         });
 
+        // Llenar selector de años
         const anoSelect = document.getElementById('ano');
         anios.forEach(anio => {
             const option = document.createElement('option');
@@ -25,55 +33,26 @@ async function cargarAnios() {
             anoSelect.appendChild(option);
         });
 
-    } catch (error) {
-        console.error('Error al cargar los años:', error);
-    }
-}
+        // Event listener para actualizar pruebas al cambiar de año
+        anoSelect.addEventListener('change', () => {
+            const selectedYear = anoSelect.value;
+            const pruebaSelect = document.getElementById('prueba');
+            pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Limpiar opciones anteriores
 
-async function cargarPruebas() {
-    const anio = document.getElementById('ano').value;
-    if (!anio) return;
-
-    try {
-        const response = await fetch('datos.csv');
-        if (!response.ok) {
-            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
-        }
-        const data = await response.text();
-        const rows = data.split('\n').slice(1); // Saltar la cabecera
-
-        // Extraer pruebas para el año seleccionado
-        const pruebas = new Set();
-        rows.forEach(row => {
-            const columns = row.split(',');
-            if (columns.length) {
-                const [ANIO, PRUEBA] = columns.map(col => col.trim()); // Extraer valores de ANIO y PRUEBA
-                if (ANIO === anio) {
-                    pruebas.add(PRUEBA);
-                }
+            if (pruebasPorAnio[selectedYear]) {
+                pruebasPorAnio[selectedYear].forEach(prueba => {
+                    const option = document.createElement('option');
+                    option.value = prueba;
+                    option.textContent = prueba;
+                    pruebaSelect.appendChild(option);
+                });
             }
-        });
 
-        const pruebaSelect = document.getElementById('prueba');
-        pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Limpiar opciones anteriores
-        pruebas.forEach(prueba => {
-            const option = document.createElement('option');
-            option.value = prueba;
-            option.textContent = prueba;
-            pruebaSelect.appendChild(option);
+            document.getElementById('container-prueba').style.display = selectedYear ? 'block' : 'none';
         });
-
-        document.getElementById('container-prueba').style.display = 'block'; // Mostrar el campo de prueba
 
     } catch (error) {
-        console.error('Error al cargar las pruebas:', error);
-    }
-}
-
-function mostrarCampoCodigo() {
-    const prueba = document.getElementById('prueba').value;
-    if (prueba) {
-        document.getElementById('busqueda').style.display = 'block'; // Mostrar el campo de código
+        console.error('Error al cargar los años y pruebas:', error);
     }
 }
 
@@ -89,15 +68,38 @@ async function buscar() {
     }
 
     try {
-        const response = await fetch('datos.csv');
+        // Buscar el archivo correspondiente en 'general.csv'
+        const generalResponse = await fetch('general.csv');
+        if (!generalResponse.ok) {
+            throw new Error(`Error al cargar el archivo general: ${generalResponse.statusText}`);
+        }
+        const generalData = await generalResponse.text();
+        const generalRows = generalData.split('\n').slice(1); // Saltar la cabecera
+
+        let archivo = null;
+        for (const row of generalRows) {
+            const columns = row.split(',').map(col => col.trim());
+            if (columns[0] === anio && columns[1] === prueba) {
+                archivo = columns[2]; // Asignar la columna ARCHIVO
+                break;
+            }
+        }
+
+        if (!archivo) {
+            resultado.innerHTML = 'No se encontró el archivo correspondiente para la combinación de año y prueba seleccionada.';
+            return;
+        }
+
+        // Realizar la búsqueda en el archivo correspondiente
+        const response = await fetch(`${archivo}.csv`);
         if (!response.ok) {
-            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
+            throw new Error(`Error al cargar el archivo ${archivo}: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n');
 
         // Obtener los nombres de las columnas
-        const header = rows.shift().split(',').map(col => col.trim()); // Obtener la primera fila como encabezado
+        const header = rows.shift().split(',').map(col => col.trim());
 
         // Crear un mapa de nombres de columna a índices
         const columnMap = header.reduce((map, column, index) => {
@@ -110,8 +112,6 @@ async function buscar() {
         for (const row of rows) {
             const columns = row.split(',').map(col => col.trim());
             if (columns.length) {
-                const ANIO = columns[columnMap['ANIO']];
-                const PRUEBA = columns[columnMap['PRUEBA']];
                 const ID = columns[columnMap['ID']];
                 const NOMBRE = columns[columnMap['NOMBRE']];
                 const SEDE = columns[columnMap['SEDE']];
@@ -135,7 +135,7 @@ async function buscar() {
                 const LECTURACRITICA = columns[columnMap['LECTURACRITICA']];
                 const ARTISTICA = columns[columnMap['ARTISTICA']];
 
-                if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
+                if (ID === codigo) {
                     // Construir la tabla con las notas
                     const tablaNotas = `
                         <table border="1" style="border-collapse: collapse; width: 100%;">
@@ -182,7 +182,8 @@ async function buscar() {
                             <span style="color: orange;">Grado: </span>
                             <span>${GRADO}</span>
                         </div>
-                        <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
+                        <hr style="border: 3px solid red; margin: 20px 0;">
+                        <h3>Notas</h3>
                         ${tablaNotas}
                     `;
                     encontrado = true;
@@ -192,13 +193,13 @@ async function buscar() {
         }
 
         if (!encontrado) {
-            resultado.innerHTML = 'Código no encontrado.';
+            resultado.innerHTML = 'No se encontró el código en el archivo correspondiente.';
         }
     } catch (error) {
-        console.error('Error al procesar la solicitud:', error);
-        resultado.innerHTML = 'Hubo un error al procesar la solicitud.';
+        console.error('Error al buscar el código:', error);
+        resultado.innerHTML = 'Hubo un error al buscar el código.';
     }
 }
 
-// Inicializar el año al cargar la página
-window.onload = cargarAnios;
+// Llamar a la función para cargar los años y pruebas al inicio
+document.addEventListener('DOMContentLoaded', cargarAniosYPruebas);
