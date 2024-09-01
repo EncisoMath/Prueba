@@ -218,7 +218,7 @@ async function buscar() {
                         ${tablaNotas}
                         <hr>
                         <h1>Aquí está tu examen:</h1>
-                        <img src="${imgExamen}" onerror="this.src='https://via.placeholder.com/150';" alt="Examen del alumno">
+                        <img src="${imgExamen}" onerror="this.src='https://via.placeholder.com/150';" style="width: 100%; height: auto; max-width: 1000px; margin: 0 auto; display: block;">
                     `;
 
                     encontrado = true;
