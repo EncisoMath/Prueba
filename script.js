@@ -188,9 +188,8 @@ async function buscar() {
                     
                             <!-- Bloque derecho -->
                             <div class="resultado-right">
-                                <div class="bold-font" style="color: orange;font-size: 60px;">
-                                    <div>Ranking</div>
-                                    <div>1</div>
+                                <div class="bold-font" style="color: orange;font-size: 60px;">Ranking</div>
+                                <div class="bold-font" style="font-size: 40px;">1</div>
                                 </div>
                             </div>
                         </div>
