@@ -148,7 +148,7 @@ async function buscar() {
                                     <tr>
                                         <td style="padding: 8px; text-align: center;">
                                             <div style="display: flex; flex-direction: column; align-items: center;">
-                                                <img src="https://raw.githubusercontent.com/EncisoMath/Prueba/main/estadistica.png" style="width: 60px; height: 60px;">
+                                                <img src="aritmetica.png" style="width: 60px; height: 60px;">
                                                 <span>${asignatura.nombre}</span>
                                             </div>
                                         </td>
