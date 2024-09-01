@@ -138,15 +138,15 @@ async function buscar() {
                         <table border="1" style="border-collapse: collapse; width: 100%; font-size: 25px;"> <!-- Establece tamaño de letra general -->
                             <thead>
                                 <tr>
-                                    <th style="padding: 8px; text-align: center;font-size: 25px">Asignatura</th>
-                                    <th style="padding: 8px; text-align: center;font-size: 25px">Respuestas Correctas</th>
-                                    <th style="padding: 8px; text-align: center;font-size: 25px">Resultados</th>
+                                    <th style="padding: 8px; text-align: center; font-size: 25px">Asignatura</th>
+                                    <th style="padding: 8px; text-align: center; font-size: 25px">Respuestas Correctas</th>
+                                    <th style="padding: 8px; text-align: center; font-size: 25px">Resultados</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ${datosAsignaturas.map(asignatura => `
                                     <tr>
-                                        <td style="padding: 8px; text-align: center;font-size: 18px">
+                                        <td style="padding: 8px; text-align: center; font-size: 18px">
                                             <div style="display: flex; flex-direction: column; align-items: center;">
                                                 ${(() => {
                                                     // Construir el nombre del archivo y la URL completa
@@ -161,12 +161,12 @@ async function buscar() {
                                                 <span>${asignatura.nombre}</span>
                                             </div>
                                         </td>
-                                        <td style="padding: 8px;">
+                                        <td class="numero-font" style="padding: 8px;">
                                             <span>${asignatura.respuestasCorrectas}</span>
                                             <span style="font-size: 15px;"> / </span> <!-- Ajusta el tamaño del "/" -->
                                             <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span> <!-- Ajusta el tamaño de cantidadPreguntas -->
                                         </td>
-                                        <td style="padding: 8px;">${asignatura.resultado}</td>
+                                        <td class="numero-font" style="padding: 8px;">${asignatura.resultado}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
