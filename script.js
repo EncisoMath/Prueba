@@ -112,7 +112,9 @@ async function buscar() {
         const nombreIndex = headerRow.indexOf('NOMBRE');
 
         if (llaveIndex === -1 || nombreIndex === -1) {
-            resultado.innerHTML = 'Las columnas LLAVE o NOMBRE no se encontraron en el archivo.';
+            // Mostrar las columnas existentes si LLAVE o NOMBRE no se encuentran
+            const columnasExistentes = headerRow.join(', ');
+            resultado.innerHTML = `Las columnas LLAVE o NOMBRE no se encontraron en el archivo.<br>Columnas disponibles: ${columnasExistentes}`;
             return;
         }
 
