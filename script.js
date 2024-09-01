@@ -149,9 +149,7 @@ async function buscar() {
                                         <td style="padding: 8px; text-align: center; font-size: 18px">
                                             <div style="display: flex; flex-direction: column; align-items: center;">
                                                 ${(() => {
-                                                    // Construir el nombre del archivo y la URL completa
                                                     const Icon = `${asignatura.nombre}.png`;                                        
-                                                    // Devolver el HTML para la imagen
                                                     return `<img 
                                                         src="${Icon}"
                                                         style="width: 50px; height: 50px;"
@@ -163,8 +161,8 @@ async function buscar() {
                                         </td>
                                         <td class="numero-font" style="padding: 8px;">
                                             <span>${asignatura.respuestasCorrectas}</span>
-                                            <span style="font-size: 15px;"> / </span> <!-- Ajusta el tamaño del "/" -->
-                                            <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span> <!-- Ajusta el tamaño de cantidadPreguntas -->
+                                            <span style="font-size: 15px;"> / </span> 
+                                            <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span>
                                         </td>
                                         <td class="numero-font" style="padding: 8px;">${asignatura.resultado}</td>
                                     </tr>
@@ -172,6 +170,7 @@ async function buscar() {
                             </tbody>
                         </table>
                     `;
+
 
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
