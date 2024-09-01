@@ -188,9 +188,9 @@ async function buscar() {
                     
                             <!-- Bloque derecho -->
                             <div class="resultado-right">
-                                <div class="bold-font" style="color: orange; font-size: 40px; margin-top: 0;">Ranking</div>
-                                <div class="bold-font" style="font-size: 30px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                    <img src="RANKING.png" style="width: 40px; height: 40px;">
+                                <div class="bold-font" style="color: orange; font-size: 35px; margin-top: 0;">Ranking</div>
+                                <div class="bold-font" style="font-size: 28px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                    <img src="RANKING.png" style="width: 35px; height: 35px;">
                                     <span>1</span>
                                 </div>
                             </div>
