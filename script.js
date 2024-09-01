@@ -192,7 +192,10 @@ const tablaNotas = `
                             <tbody>
                                 <tr style="height: 30px;">
                                     <td>Aritmética</td>
-                                    <td>${ARITMETICA}</td>
+                                    <td>
+                                        <span style="font-size: 15px;">${ARITMETICA}</span> /
+                                        <span style="font-size: 9px;">${Q_ARITMETICA}</span>
+                                    </td>
                                     <td>÷</td>
                                     <td>${Q_ARITMETICA}</td>
                                     <td>=</td>
