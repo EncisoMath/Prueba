@@ -83,7 +83,7 @@ input[type="text"], select, button {
     width: 100%;
     max-width: 1000px; /* Ajusta según el ancho deseado */
     margin: 0 auto; /* Centra el bloque en la página */
-    margin-bottom: 20px; /* Espacio debajo del contenedor */
+    margin-bottom: 10px; /* Espacio debajo del contenedor */
 }
 
 /* Estilo del bloque izquierdo (Alumno, Sede y Grado) */
@@ -106,7 +106,6 @@ input[type="text"], select, button {
 /* Estilo de la línea separadora */
 .linea-separadora {
     border: 3px solid red;
-    margin: 20px 0; /* Espacio arriba y abajo de la línea */
     width: 100%; /* Ancho completo del contenedor */
 }
 
