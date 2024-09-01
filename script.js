@@ -2,7 +2,7 @@ async function cargarAniosYPruebas() {
     try {
         const response = await fetch('general.csv');
         if (!response.ok) {
-            throw new Error(Error al cargar el archivo general: ${response.statusText});
+            throw new Error(`Error al cargar el archivo general: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera si la hay
@@ -77,7 +77,7 @@ async function buscar() {
         // Buscar el archivo correspondiente en 'general.csv'
         const generalResponse = await fetch('general.csv');
         if (!generalResponse.ok) {
-            throw new Error(Error al cargar el archivo general: ${generalResponse.statusText});
+            throw new Error(`Error al cargar el archivo general: ${generalResponse.statusText}`);
         }
         const generalData = await generalResponse.text();
         const generalRows = generalData.split('\n').slice(1); // Saltar la cabecera
@@ -97,9 +97,9 @@ async function buscar() {
         }
 
         // Realizar la búsqueda en el archivo correspondiente
-        const response = await fetch(${archivo}.csv);
+        const response = await fetch(`${archivo}.csv`);
         if (!response.ok) {
-            throw new Error(Error al cargar el archivo ${archivo}: ${response.statusText});
+            throw new Error(`Error al cargar el archivo ${archivo}: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n');
@@ -112,7 +112,7 @@ async function buscar() {
         if (llaveIndex === -1 || nombreIndex === -1) {
             // Mostrar las columnas existentes si LLAVE o NOMBRE no se encuentran
             const columnasExistentes = headerRow.join(', ');
-            resultado.innerHTML = Las columnas LLAVE o NOMBRE no se encontraron en el archivo.<br>Columnas disponibles: ${columnasExistentes};
+            resultado.innerHTML = `Las columnas LLAVE o NOMBRE no se encontraron en el archivo.<br>Columnas disponibles: ${columnasExistentes}`;
             return;
         }
 
@@ -125,12 +125,11 @@ async function buscar() {
         if (match) {
             const columns = match.split(',').map(col => col.trim());
             const nombre = columns[nombreIndex];
-            resultado.innerHTML = 
-                <div class="resultado-item">
-                    <hr style="border: 3px solid gray; width: 100%;">
-                    <p>Nombre: ${nombre}</p>
-                </div>
-            ;
+            resultado.innerHTML = `
+                <hr style="border: 3px solid gray; width: 100%; height: 3px; margin: 0;">
+                <h1>Resultados</h1>
+                <p><span style="color: orange;">Alumno: </span><span style="color: black;">${nombre}</span></p>
+            `;
         } else {
             resultado.innerHTML = 'No se encontraron resultados para el código ingresado.';
         }
