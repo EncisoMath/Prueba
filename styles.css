@@ -105,8 +105,8 @@ input[type="text"], select, button {
 
 /* Estilo de la línea separadora */
 .linea-separadora {
-    border: 3px dotted red;
-    margin-bottom: 5px; /* Espacio debajo del contenedor */
+    border: 2px dotted gray;
+    margin-bottom: 15px; /* Espacio debajo del contenedor */
     width: 100%; /* Ancho completo del contenedor */
 }
 
