@@ -148,9 +148,9 @@ async function buscar() {
                                     <tr>
                                         <td style="padding: 8px;">
                                         <span>${asignatura.nombre}</span>
-                                        <td style="padding: 8px; text-align: center;">
+                                        <span>
                                             <img src="https://raw.githubusercontent.com/EncisoMath/Prueba/main/estadistica.png" style="width: 60px; height: 60px;">
-                                        </td>
+                                        </span>
                                         </td>
                                         <td style="padding: 8px;">
                                             <span>${asignatura.respuestasCorrectas}</span>
