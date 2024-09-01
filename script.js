@@ -149,7 +149,7 @@ async function buscar() {
                                 <tr><td>Aritmética</td><td>${ARITMETICA}</td></tr>
                                 <tr><td>Estadística</td><td>${ESTADISTICA}</td></tr>
                                 <tr><td>Geometría</td><td>${GEOMETRIA}</td></tr>
-                                <tr><td>Edu. Física</td><td>${EDU_FISICA}</td></tr>
+                                <tr><td>Edu. Física</td><td>${EDUFISICA}</td></tr>
                                 <tr><td>Inglés</td><td>${INGLES}</td></tr>
                                 <tr><td>Ética</td><td>${ETICA}</td></tr>
                                 <tr><td>Biología</td><td>${BIOLOGIA}</td></tr>
