@@ -223,7 +223,7 @@ const tablaNotas = `
             <tr style="height: 30px;">
                 <td>Educación Física</td>
                 <td>
-                    <span style="font-size: 25px;">${EDU_FISICA}</span> /
+                    <span style="font-size: 25px;">${EDUFISICA}</span> /
                     <span style="font-size: 12px;">${Q_EDUFISICA}</span>
                 </td>
                 <td>
@@ -366,11 +366,11 @@ const tablaNotas = `
             <tr style="height: 30px;">
                 <td>Matemáticas</td>
                 <td>
-                    <span style="font-size: 25px;">${MATEMATICAS}</span> /
-                    <span style="font-size: 12px;">${Q_MATEMATICAS}</span>
+                    <span style="font-size: 25px;">${ARTISTICA}</span> /
+                    <span style="font-size: 12px;">${Q_ARTISTICA}</span>
                 </td>
                 <td>
-                    <span style="font-size: 25px;">${R_MATEMATICAS}</span> /
+                    <span style="font-size: 25px;">${R_ARTISTICA}</span> /
                     <span style="font-size: 12px;">10</span>
                 </td>
             </tr>
