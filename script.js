@@ -113,10 +113,10 @@ async function buscar() {
                             <tbody>
                                 <tr style="height: 19px;">
                                     <td>Aritmética</td>
-                                    <td>${ARITMETICA}</td>
-                                    <td>÷</td>
-                                    <td>${Q_ARITMETICA}</td>
-                                    <td>=</td>
+                                    <td>
+                                        <span style="font-size: 25px;">${ARITMETICA}</span> /
+                                        <span style="font-size: 12px;">${Q_ARITMETICA}</span>
+                                    </td>
                                     <td>${R_ARITMETICA}</td>
                                 </tr>
                                 <tr style="height: 19px;">
