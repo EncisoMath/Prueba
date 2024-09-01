@@ -149,7 +149,7 @@ async function buscar() {
                                         <td style="padding: 8px; text-align: center;">
                                             <div style="display: flex; flex-direction: column; align-items: center;">
                                                 ${(() => {
-                                                    const imageFileName = "estadistica"; // Componer el nombre del archivo
+                                                    const imageFileName = ${asignatura.nombre}; // Componer el nombre del archivo
                                                     const ImageToLoad = imageFileName + ".png";
                                                     return `<img 
                                                         src="${ImageToLoad}"
