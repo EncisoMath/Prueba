@@ -190,27 +190,154 @@ const tablaNotas = `
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Aritmética</td><td>${ARITMETICA}</td><td>÷</td><td>${Q_ARITMETICA}</td><td>=</td><td>${R_ARITMETICA}</td></tr>
-                                <tr><td>Estadística</td><td>${ESTADISTICA}</td><td>÷</td><td>${Q_ESTADISTICA}</td><td>=</td><td>${R_ESTADISTICA}</td></tr>
-                                <tr><td>Geometría</td><td>${GEOMETRIA}</td><td>÷</td><td>${Q_GEOMETRIA}</td><td>=</td><td>${R_GEOMETRIA}</td></tr>
-                                <tr><td>Educación Física</td><td>${EDU_FISICA}</td><td>÷</td><td>${Q_EDUFISICA}</td><td>=</td><td>${R_EDUFISICA}</td></tr>
-                                <tr><td>Inglés</td><td>${INGLES}</td><td>÷</td><td>${Q_INGLES}</td><td>=</td><td>${R_INGLES}</td></tr>
-                                <tr><td>Ética</td><td>${ETICA}</td><td>÷</td><td>${Q_ETICA}</td><td>=</td><td>${R_ETICA}</td></tr>
-                                <tr><td>Biología</td><td>${BIOLOGIA}</td><td>÷</td><td>${Q_BIOLOGIA}</td><td>=</td><td>${R_BIOLOGIA}</td></tr>
-                                <tr><td>Física</td><td>${FISICA}</td><td>÷</td><td>${Q_FISICA}</td><td>=</td><td>${R_FISICA}</td></tr>
-                                <tr><td>Química</td><td>${QUIMICA}</td><td>÷</td><td>${Q_QUIMICA}</td><td>=</td><td>${R_QUIMICA}</td></tr>
-                                <tr><td>Informática</td><td>${INFORMATICA}</td><td>÷</td><td>${Q_INFORMATICA}</td><td>=</td><td>${R_INFORMATICA}</td></tr>
-                                <tr><td>Historia</td><td>${HISTORIA}</td><td>÷</td><td>${Q_HISTORIA}</td><td>=</td><td>${R_HISTORIA}</td></tr>
-                                <tr><td>Geografía</td><td>${GEOGRAFIA}</td><td>÷</td><td>${Q_GEOGRAFIA}</td><td>=</td><td>${R_GEOGRAFIA}</td></tr>
-                                <tr><td>Constitución</td><td>${CONSTITUCION}</td><td>÷</td><td>${Q_CONSTITUCION}</td><td>=</td><td>${R_CONSTITUCION}</td></tr>
-                                <tr><td>Filosofía</td><td>${FILOSOFIA}</td><td>÷</td><td>${Q_FILOSOFIA}</td><td>=</td><td>${R_FILOSOFIA}</td></tr>
-                                <tr><td>Religión</td><td>${RELIGION}</td><td>÷</td><td>${Q_RELIGION}</td><td>=</td><td>${R_RELIGION}</td></tr>
-                                <tr><td>Lengua Castellana</td><td>${LENGUACASTELLANA}</td><td>÷</td><td>${Q_LENGUACASTELLANA}</td><td>=</td><td>${R_LENGUACASTELLANA}</td></tr>
-                                <tr><td>Lectura Crítica</td><td>${LECTURACRITICA}</td><td>÷</td><td>${Q_LECTURACRITICA}</td><td>=</td><td>${R_LECTURACRITICA}</td></tr>
-                                <tr><td>Artística</td><td>${ARTISTICA}</td><td>÷</td><td>${Q_ARTISTICA}</td><td>=</td><td>${R_ARTISTICA}</td></tr>
+                                <tr style="height: 19px;">
+                                    <td>Aritmética</td>
+                                    <td>${ARITMETICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_ARITMETICA}</td>
+                                    <td>=</td>
+                                    <td>${R_ARITMETICA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Estadística</td>
+                                    <td>${ESTADISTICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_ESTADISTICA}</td>
+                                    <td>=</td>
+                                    <td>${R_ESTADISTICA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Geometría</td>
+                                    <td>${GEOMETRIA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_GEOMETRIA}</td>
+                                    <td>=</td>
+                                    <td>${R_GEOMETRIA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Educación Física</td>
+                                    <td>${EDU_FISICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_EDUFISICA}</td>
+                                    <td>=</td>
+                                    <td>${R_EDUFISICA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Inglés</td>
+                                    <td>${INGLES}</td>
+                                    <td>÷</td>
+                                    <td>${Q_INGLES}</td>
+                                    <td>=</td>
+                                    <td>${R_INGLES}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Ética</td>
+                                    <td>${ETICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_ETICA}</td>
+                                    <td>=</td>
+                                    <td>${R_ETICA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Biología</td>
+                                    <td>${BIOLOGIA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_BIOLOGIA}</td>
+                                    <td>=</td>
+                                    <td>${R_BIOLOGIA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Física</td>
+                                    <td>${FISICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_FISICA}</td>
+                                    <td>=</td>
+                                    <td>${R_FISICA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Química</td>
+                                    <td>${QUIMICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_QUIMICA}</td>
+                                    <td>=</td>
+                                    <td>${R_QUIMICA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Informática</td>
+                                    <td>${INFORMATICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_INFORMATICA}</td>
+                                    <td>=</td>
+                                    <td>${R_INFORMATICA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Historia</td>
+                                    <td>${HISTORIA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_HISTORIA}</td>
+                                    <td>=</td>
+                                    <td>${R_HISTORIA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Geografía</td>
+                                    <td>${GEOGRAFIA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_GEOGRAFIA}</td>
+                                    <td>=</td>
+                                    <td>${R_GEOGRAFIA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Constitución</td>
+                                    <td>${CONSTITUCION}</td>
+                                    <td>÷</td>
+                                    <td>${Q_CONSTITUCION}</td>
+                                    <td>=</td>
+                                    <td>${R_CONSTITUCION}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Filosofía</td>
+                                    <td>${FILOSOFIA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_FILOSOFIA}</td>
+                                    <td>=</td>
+                                    <td>${R_FILOSOFIA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Religión</td>
+                                    <td>${RELIGION}</td>
+                                    <td>÷</td>
+                                    <td>${Q_RELIGION}</td>
+                                    <td>=</td>
+                                    <td>${R_RELIGION}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Lengua Castellana</td>
+                                    <td>${LENGUACASTELLANA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_LENGUACASTELLANA}</td>
+                                    <td>=</td>
+                                    <td>${R_LENGUACASTELLANA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Lectura Crítica</td>
+                                    <td>${LECTURACRITICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_LECTURACRITICA}</td>
+                                    <td>=</td>
+                                    <td>${R_LECTURACRITICA}</td>
+                                </tr>
+                                <tr style="height: 19px;">
+                                    <td>Artística</td>
+                                    <td>${ARTISTICA}</td>
+                                    <td>÷</td>
+                                    <td>${Q_ARTISTICA}</td>
+                                    <td>=</td>
+                                    <td>${R_ARTISTICA}</td>
+                                </tr>
                             </tbody>
                         </table>
                     `;
+
                     resultado.innerHTML = tablaNotas;
                     encontrado = true;
                     break;
