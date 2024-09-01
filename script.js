@@ -101,9 +101,9 @@ async function buscar() {
         for (const row of rows) {
             const columns = row.split(',');
             if (columns.length >= 4) { // Asegurarse de que hay suficientes columnas
-                const [ANIO, PRUEBA, LLAVE, NOTAFINAL, PROMEDIO] = columns.map(col => col.trim()); // Eliminar espacios en blanco
+                const [ANIO, PRUEBA, ID, NOTAFINAL, PROMEDIO] = columns.map(col => col.trim()); // Eliminar espacios en blanco
 
-                if (ANIO === anio && PRUEBA === prueba && LLAVE === codigo) {
+                if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
                         <div class="resultado-item">
