@@ -154,8 +154,9 @@ async function buscar() {
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     asignaturas.forEach(asignatura => {
+                        const nombreAsignatura = nombreAsignaturaMap.get(asignatura) || asignatura;
                         datosAsignaturas.push({
-                            nombre: asignatura,
+                            nombre: nombreAsignatura,
                             respuestasCorrectas: columns[columnMap[asignatura]],
                             cantidadPreguntas: columns[columnMap[`Q_${asignatura}`]],
                             resultado: columns[columnMap[`R_${asignatura}`]]
