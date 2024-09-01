@@ -1,6 +1,6 @@
 async function cargarAnios() {
     try {
-        const response = await fetch('https://firebasestorage.googleapis.com/v0/b/repo-bf571.appspot.com/o/datos.csv?alt=media');
+        const response = await fetch('https://raw.githubusercontent.com/usuario/repositorio/rama/datos.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
@@ -35,7 +35,7 @@ async function cargarPruebas() {
     if (!anio) return;
 
     try {
-        const response = await fetch('https://firebasestorage.googleapis.com/v0/b/repo-bf571.appspot.com/o/datos.csv?alt=media');
+        const response = await fetch('https://raw.githubusercontent.com/usuario/repositorio/rama/datos.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
@@ -89,7 +89,7 @@ async function buscar() {
     }
 
     try {
-        const response = await fetch('https://firebasestorage.googleapis.com/v0/b/repo-bf571.appspot.com/o/datos.csv?alt=media');
+        const response = await fetch('https://raw.githubusercontent.com/usuario/repositorio/rama/datos.csv');
         if (!response.ok) {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
