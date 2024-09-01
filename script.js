@@ -182,10 +182,10 @@ const tablaNotas = `
                             <thead>
                                 <tr>
                                     <th style="padding: 8px; text-align: left;">Asignatura</th>
-                                    <th style="padding: 8px; text-align: left;">Nota</th>
-                                    <th style="padding: 8px; text-align: left;">÷</th>
+                                    <th style="padding: 8px; text-align: left;">Respuestas Correctas</th>
+                                    <th style="padding: 8px; text-align: left;"></th>
                                     <th style="padding: 8px; text-align: left;">Preguntas</th>
-                                    <th style="padding: 8px; text-align: left;">=</th>
+                                    <th style="padding: 8px; text-align: left;"></th>
                                     <th style="padding: 8px; text-align: left;">Resultado</th>
                                 </tr>
                             </thead>
