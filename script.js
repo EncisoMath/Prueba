@@ -128,7 +128,7 @@ async function buscar() {
                                 <tr><td style="border: 1px solid #ddd; padding: 8px;">ARITMETICA</td><td style="border: 1px solid #ddd; padding: 8px;">${ARITMETICA}</td></tr>
                                 <tr><td style="border: 1px solid #ddd; padding: 8px;">ESTADISTICA</td><td style="border: 1px solid #ddd; padding: 8px;">${ESTADISTICA}</td></tr>
                                 <tr><td style="border: 1px solid #ddd; padding: 8px;">GEOMETRIA</td><td style="border: 1px solid #ddd; padding: 8px;">${GEOMETRIA}</td></tr>
-                                <tr><td style="border: 1px solid #ddd; padding: 8px;">EDU. FISICA</td><td style="border: 1px solid #ddd; padding: 8px;">${EDU_FISICA}</td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 8px;">EDU. FISICA</td><td style="border: 1px solid #ddd; padding: 8px;">${EDUFISICA}</td></tr>
                                 <tr><td style="border: 1px solid #ddd; padding: 8px;">INGLES</td><td style="border: 1px solid #ddd; padding: 8px;">${INGLES}</td></tr>
                                 <tr><td style="border: 1px solid #ddd; padding: 8px;">ETICA</td><td style="border: 1px solid #ddd; padding: 8px;">${ETICA}</td></tr>
                                 <tr><td style="border: 1px solid #ddd; padding: 8px;">BIOLOGIA</td><td style="border: 1px solid #ddd; padding: 8px;">${BIOLOGIA}</td></tr>
