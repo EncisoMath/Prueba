@@ -110,6 +110,8 @@ async function buscar() {
         }, {});
 
         let encontrado = false;
+        const asignaturas = ['ARITMETICA', 'ESTADISTICA', 'GEOMETRIA']; // Añadir más asignaturas si es necesario
+        const datosAsignaturas = [];
 
         for (const row of rows) {
             const columns = row.split(',').map(col => col.trim());
@@ -120,18 +122,17 @@ async function buscar() {
                 const NOMBRE = columns[columnMap['NOMBRE']];
                 const SEDE = columns[columnMap['SEDE']];
                 const GRADO = columns[columnMap['GRADO']];
-                const ARITMETICA = columns[columnMap['ARITMETICA']];
-                const Q_ARITMETICA = columns[columnMap['Q_ARITMETICA']];
-                const R_ARITMETICA = columns[columnMap['R_ARITMETICA']];
-                const ESTADISTICA = columns[columnMap['ESTADISTICA']];
-                const Q_ESTADISTICA = columns[columnMap['Q_ESTADISTICA']];
-                const R_ESTADISTICA = columns[columnMap['R_ESTADISTICA']];
-                const GEOMETRIA = columns[columnMap['GEOMETRIA']];
-                const Q_GEOMETRIA = columns[columnMap['Q_GEOMETRIA']];
-                const R_GEOMETRIA = columns[columnMap['R_GEOMETRIA']];
-                // Continúa para las demás asignaturas...
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
+                    asignaturas.forEach(asignatura => {
+                        datosAsignaturas.push({
+                            nombre: asignatura,
+                            respuestasCorrectas: columns[columnMap[asignatura]],
+                            cantidadPreguntas: columns[columnMap[`Q_${asignatura}`]],
+                            resultado: columns[columnMap[`R_${asignatura}`]]
+                        });
+                    });
+
                     // Construir la tabla con las notas
                     const tablaNotas = `
                         <table border="1" style="border-collapse: collapse; width: 100%;">
@@ -143,34 +144,17 @@ async function buscar() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td style="padding: 8px;">ARITMETICA</td>
-                                    <td style="padding: 8px;">
-                                        <span style="font-size: 25px;">${ARITMETICA}</span>
-                                        /
-                                        <span style="font-size: 15px;">${Q_ARITMETICA}</span>
-                                    </td>
-                                    <td style="padding: 8px;">${R_ARITMETICA}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px;">ESTADISTICA</td>
-                                    <td style="padding: 8px;">
-                                        <span style="font-size: 25px;">${ESTADISTICA}</span>
-                                        /
-                                        <span style="font-size: 15px;">${Q_ESTADISTICA}</span>
-                                    </td>
-                                    <td style="padding: 8px;">${R_ESTADISTICA}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px;">GEOMETRIA</td>
-                                    <td style="padding: 8px;">
-                                        <span style="font-size: 25px;">${GEOMETRIA}</span>
-                                        /
-                                        <span style="font-size: 15px;">${Q_GEOMETRIA}</span>
-                                    </td>
-                                    <td style="padding: 8px;">${R_GEOMETRIA}</td>
-                                </tr>
-                                <!-- Añade más filas para otras asignaturas aquí -->
+                                ${datosAsignaturas.map(asignatura => `
+                                    <tr>
+                                        <td style="padding: 8px;">${asignatura.nombre}</td>
+                                        <td style="padding: 8px;">
+                                            <span style="font-size: 25px;">${asignatura.respuestasCorrectas}</span>
+                                            /
+                                            <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span>
+                                        </td>
+                                        <td style="padding: 8px;">${asignatura.resultado}</td>
+                                    </tr>
+                                `).join('')}
                             </tbody>
                         </table>
                     `;
