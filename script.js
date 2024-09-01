@@ -172,23 +172,29 @@ async function buscar() {
                     `;
 
 
-                    resultado.innerHTML = `
-                        <h1>Resultados 1234567890</h1>
-                        <div class="resultado-item">
-                            <span style="color: orange;">Alumno: </span>
-                            <span>${NOMBRE}</span>
-                        </div>
-                        <div class="resultado-item">
-                            <span style="color: orange;">Sede: </span>
-                            <span>${SEDE}</span>
-                        </div>
-                        <div class="resultado-item">
-                            <span style="color: orange;">Grado: </span>
-                            <span>${GRADO}</span>
-                        </div>
-                        <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
-                        ${tablaNotas}
-                    `;
+resultado.innerHTML = `
+    <h1>Resultados</h1>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="text-align: left;">
+            <div class="resultado-item">
+                <span style="color: orange;">Alumno: </span>
+                <span>${NOMBRE}</span>
+            </div>
+            <div class="resultado-item">
+                <span style="color: orange;">Sede y Grado: </span>
+                <span>${SEDE} ${GRADO}</span>
+            </div>
+        </div>
+        <div style="text-align: right;">
+            <div class="resultado-item">
+                <span style="color: orange;">Ranking: </span>
+                <span>${ranking}</span>
+            </div>
+        </div>
+    </div>
+    <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
+    ${tablaNotas}
+`;
                     encontrado = true;
                     break;
                 }
