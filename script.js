@@ -2,7 +2,7 @@ async function cargarAnios() {
     try {
         const response = await fetch('datos.csv');
         if (!response.ok) {
-            throw new Error(Error al cargar el CSV: ${response.statusText});
+            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera
@@ -37,7 +37,7 @@ async function cargarPruebas() {
     try {
         const response = await fetch('datos.csv');
         if (!response.ok) {
-            throw new Error(Error al cargar el CSV: ${response.statusText});
+            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Saltar la cabecera
@@ -91,7 +91,7 @@ async function buscar() {
     try {
         const response = await fetch('datos.csv');
         if (!response.ok) {
-            throw new Error(Error al cargar el CSV: ${response.statusText});
+            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
         const data = await response.text();
         const rows = data.split('\n');
@@ -110,7 +110,6 @@ async function buscar() {
         for (const row of rows) {
             const columns = row.split(',').map(col => col.trim());
             if (columns.length) {
-                // Obtener valores usando el mapa de columnas
                 const ANIO = columns[columnMap['ANIO']];
                 const PRUEBA = columns[columnMap['PRUEBA']];
                 const ID = columns[columnMap['ID']];
@@ -120,7 +119,7 @@ async function buscar() {
                 const ARITMETICA = columns[columnMap['ARITMETICA']];
                 const ESTADISTICA = columns[columnMap['ESTADISTICA']];
                 const GEOMETRIA = columns[columnMap['GEOMETRIA']];
-                const EDU_FISICA = columns[columnMap['EDUFISICA']];
+                const EDU_FISICA = columns[columnMap['EDU. FISICA']];
                 const INGLES = columns[columnMap['INGLES']];
                 const ETICA = columns[columnMap['ETICA']];
                 const BIOLOGIA = columns[columnMap['BIOLOGIA']];
@@ -135,81 +134,57 @@ async function buscar() {
                 const LENGUACASTELLANA = columns[columnMap['LENGUACASTELLANA']];
                 const LECTURACRITICA = columns[columnMap['LECTURACRITICA']];
                 const ARTISTICA = columns[columnMap['ARTISTICA']];
-                
-                // Obtener valores de cantidad de preguntas y resultados
-                const Q_ARITMETICA = columns[columnMap['Q_ARITMETICA']];
-                const Q_ESTADISTICA = columns[columnMap['Q_ESTADISTICA']];
-                const Q_GEOMETRIA = columns[columnMap['Q_GEOMETRIA']];
-                const Q_EDUFISICA = columns[columnMap['Q_EDUFISICA']];
-                const Q_INGLES = columns[columnMap['Q_INGLES']];
-                const Q_ETICA = columns[columnMap['Q_ETICA']];
-                const Q_BIOLOGIA = columns[columnMap['Q_BIOLOGIA']];
-                const Q_FISICA = columns[columnMap['Q_FISICA']];
-                const Q_QUIMICA = columns[columnMap['Q_QUIMICA']];
-                const Q_INFORMATICA = columns[columnMap['Q_INFORMATICA']];
-                const Q_HISTORIA = columns[columnMap['Q_HISTORIA']];
-                const Q_GEOGRAFIA = columns[columnMap['Q_GEOGRAFIA']];
-                const Q_CONSTITUCION = columns[columnMap['Q_CONSTITUCION']];
-                const Q_FILOSOFIA = columns[columnMap['Q_FILOSOFIA']];
-                const Q_RELIGION = columns[columnMap['Q_RELIGION']];
-                const Q_LENGUACASTELLANA = columns[columnMap['Q_LENGUACASTELLANA']];
-                const Q_LECTURACRITICA = columns[columnMap['Q_LECTURACRITICA']];
-                const Q_ARTISTICA = columns[columnMap['Q_ARTISTICA']];
-
-                const R_ARITMETICA = columns[columnMap['R_ARITMETICA']];
-                const R_ESTADISTICA = columns[columnMap['R_ESTADISTICA']];
-                const R_GEOMETRIA = columns[columnMap['R_GEOMETRIA']];
-                const R_EDUFISICA = columns[columnMap['R_EDUFISICA']];
-                const R_INGLES = columns[columnMap['R_INGLES']];
-                const R_ETICA = columns[columnMap['R_ETICA']];
-                const R_BIOLOGIA = columns[columnMap['R_BIOLOGIA']];
-                const R_FISICA = columns[columnMap['R_FISICA']];
-                const R_QUIMICA = columns[columnMap['R_QUIMICA']];
-                const R_INFORMATICA = columns[columnMap['R_INFORMATICA']];
-                const R_HISTORIA = columns[columnMap['R_HISTORIA']];
-                const R_GEOGRAFIA = columns[columnMap['R_GEOGRAFIA']];
-                const R_CONSTITUCION = columns[columnMap['R_CONSTITUCION']];
-                const R_FILOSOFIA = columns[columnMap['R_FILOSOFIA']];
-                const R_RELIGION = columns[columnMap['R_RELIGION']];
-                const R_LENGUACASTELLANA = columns[columnMap['R_LENGUACASTELLANA']];
-                const R_LECTURACRITICA = columns[columnMap['R_LECTURACRITICA']];
-                const R_ARTISTICA = columns[columnMap['R_ARTISTICA']];
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     // Construir la tabla con las notas
-                    const tablaNotas = 
+                    const tablaNotas = `
                         <table border="1" style="border-collapse: collapse; width: 100%;">
                             <thead>
                                 <tr>
                                     <th style="padding: 8px; text-align: left;">Asignatura</th>
                                     <th style="padding: 8px; text-align: left;">Nota</th>
-                                    <th style="padding: 8px; text-align: left;">Preguntas</th>
-                                    <th style="padding: 8px; text-align: left;">Resultado</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Aritmética</td><td>${ARITMETICA}</td><td>${Q_ARITMETICA}</td><td>${R_ARITMETICA}</td></tr>
-                                <tr><td>Estadística</td><td>${ESTADISTICA}</td><td>${Q_ESTADISTICA}</td><td>${R_ESTADISTICA}</td></tr>
-                                <tr><td>Geometría</td><td>${GEOMETRIA}</td><td>${Q_GEOMETRIA}</td><td>${R_GEOMETRIA}</td></tr>
-                                <tr><td>Educación Física</td><td>${EDU_FISICA}</td><td>${Q_EDUFISICA}</td><td>${R_EDUFISICA}</td></tr>
-                                <tr><td>Inglés</td><td>${INGLES}</td><td>${Q_INGLES}</td><td>${R_INGLES}</td></tr>
-                                <tr><td>Ética</td><td>${ETICA}</td><td>${Q_ETICA}</td><td>${R_ETICA}</td></tr>
-                                <tr><td>Biología</td><td>${BIOLOGIA}</td><td>${Q_BIOLOGIA}</td><td>${R_BIOLOGIA}</td></tr>
-                                <tr><td>Física</td><td>${FISICA}</td><td>${Q_FISICA}</td><td>${R_FISICA}</td></tr>
-                                <tr><td>Química</td><td>${QUIMICA}</td><td>${Q_QUIMICA}</td><td>${R_QUIMICA}</td></tr>
-                                <tr><td>Informática</td><td>${INFORMATICA}</td><td>${Q_INFORMATICA}</td><td>${R_INFORMATICA}</td></tr>
-                                <tr><td>Historia</td><td>${HISTORIA}</td><td>${Q_HISTORIA}</td><td>${R_HISTORIA}</td></tr>
-                                <tr><td>Geografía</td><td>${GEOGRAFIA}</td><td>${Q_GEOGRAFIA}</td><td>${R_GEOGRAFIA}</td></tr>
-                                <tr><td>Constitución</td><td>${CONSTITUCION}</td><td>${Q_CONSTITUCION}</td><td>${R_CONSTITUCION}</td></tr>
-                                <tr><td>Filosofía</td><td>${FILOSOFIA}</td><td>${Q_FILOSOFIA}</td><td>${R_FILOSOFIA}</td></tr>
-                                <tr><td>Religión</td><td>${RELIGION}</td><td>${Q_RELIGION}</td><td>${R_RELIGION}</td></tr>
-                                <tr><td>Lengua Castellana</td><td>${LENGUACASTELLANA}</td><td>${Q_LENGUACASTELLANA}</td><td>${R_LENGUACASTELLANA}</td></tr>
-                                <tr><td>Lectura Crítica</td><td>${LECTURACRITICA}</td><td>${Q_LECTURACRITICA}</td><td>${R_LECTURACRITICA}</td></tr>
-                                <tr><td>Artística</td><td>${ARTISTICA}</td><td>${Q_ARTISTICA}</td><td>${R_ARTISTICA}</td></tr>
+                                <tr><td>ARITMETICA</td><td>${ARITMETICA}</td></tr>
+                                <tr><td>ESTADISTICA</td><td>${ESTADISTICA}</td></tr>
+                                <tr><td>GEOMETRIA</td><td>${GEOMETRIA}</td></tr>
+                                <tr><td>EDU. FISICA</td><td>${EDU_FISICA}</td></tr>
+                                <tr><td>INGLES</td><td>${INGLES}</td></tr>
+                                <tr><td>ETICA</td><td>${ETICA}</td></tr>
+                                <tr><td>BIOLOGIA</td><td>${BIOLOGIA}</td></tr>
+                                <tr><td>FISICA</td><td>${FISICA}</td></tr>
+                                <tr><td>QUIMICA</td><td>${QUIMICA}</td></tr>
+                                <tr><td>INFORMATICA</td><td>${INFORMATICA}</td></tr>
+                                <tr><td>HISTORIA</td><td>${HISTORIA}</td></tr>
+                                <tr><td>GEOGRAFIA</td><td>${GEOGRAFIA}</td></tr>
+                                <tr><td>CONSTITUCION</td><td>${CONSTITUCION}</td></tr>
+                                <tr><td>FILOSOFIA</td><td>${FILOSOFIA}</td></tr>
+                                <tr><td>RELIGION</td><td>${RELIGION}</td></tr>
+                                <tr><td>LENGUACASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
+                                <tr><td>LECTURACRITICA</td><td>${LECTURACRITICA}</td></tr>
+                                <tr><td>ARTISTICA</td><td>${ARTISTICA}</td></tr>
                             </tbody>
                         </table>
-                    ;
-                    resultado.innerHTML = tablaNotas;
+                    `;
+
+                    resultado.innerHTML = `
+                        <h1>Resultados</h1>
+                        <div class="resultado-item">
+                            <span style="color: orange;">Alumno: </span>
+                            <span>${NOMBRE}</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span style="color: orange;">Sede: </span>
+                            <span>${SEDE}</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span style="color: orange;">Grado: </span>
+                            <span>${GRADO}</span>
+                        </div>
+                        <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
+                        ${tablaNotas}
+                    `;
                     encontrado = true;
                     break;
                 }
@@ -217,22 +192,13 @@ async function buscar() {
         }
 
         if (!encontrado) {
-            resultado.innerHTML = 'No se encontraron resultados.';
+            resultado.innerHTML = 'Código no encontrado.';
         }
-
     } catch (error) {
-        console.error('Error al buscar el código:', error);
+        console.error('Error al procesar la solicitud:', error);
+        resultado.innerHTML = 'Hubo un error al procesar la solicitud.';
     }
 }
 
-// Cargar años al inicio
-document.addEventListener('DOMContentLoaded', cargarAnios);
-
-// Manejar cambio de selección de año
-document.getElementById('ano').addEventListener('change', cargarPruebas);
-
-// Manejar cambio de selección de prueba
-document.getElementById('prueba').addEventListener('change', mostrarCampoCodigo);
-
-// Manejar búsqueda
-document.getElementById('buscar').addEventListener('click', buscar);
+// Inicializar el año al cargar la página
+window.onload = cargarAnios;
