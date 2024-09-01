@@ -100,24 +100,27 @@ async function buscar() {
 
         for (const row of rows) {
             const columns = row.split(',');
-            if (columns.length >= 4) { // Asegurarse de que hay suficientes columnas
-                const [ANIO, PRUEBA, ID, NOTAFINAL, PROMEDIO] = columns.map(col => col.trim()); // Eliminar espacios en blanco
+            if (columns.length >= 8) { // Asegurarse de que hay suficientes columnas
+                const [ANIO, PRUEBA, ID, NOTAFINAL, PROMEDIO, NOMBRE, SEDE, GRADO] = columns.map(col => col.trim()); // Eliminar espacios en blanco
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
                         <div class="resultado-item">
-                            <span class="resultado-label">NOTA FINAL</span><br>
-                            <img src="https://cdn-icons-png.flaticon.com/512/7426/7426821.png" alt="Nota Final" class="resultado-icon">
-                            <div class="separador"></div>
-                            <span class="resultado-dato">${NOTAFINAL}/100</span>
+                            <span style="color: orange;">Alumno: </span>
+                            <span>${NOMBRE}</span>
                         </div>
-                        <div class="linea-separadora"></div>
                         <div class="resultado-item">
-                            <span class="resultado-label">PROMEDIO</span><br>
-                            <img src="https://cdn-icons-png.flaticon.com/512/5331/5331680.png" alt="Promedio" class="resultado-icon">
-                            <div class="separador"></div>
-                            <span class="resultado-dato">${PROMEDIO}/100</span>
+                            <span style="color: orange;">Sede: </span>
+                            <span>${SEDE}</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span style="color: orange;">Grado: </span>
+                            <span>${GRADO}</span>
+                        </div>
+                        <hr style="border: 2px solid #000; margin: 20px 0;">
+                        <div>
+                            Holi, esperando instrucciones
                         </div>
                     `;
                     encontrado = true;
@@ -137,3 +140,4 @@ async function buscar() {
 
 // Inicializar el año al cargar la página
 window.onload = cargarAnios;
+
