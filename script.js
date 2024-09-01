@@ -173,18 +173,18 @@ async function buscar() {
 
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
-                        <div class="resultado-item">
-                            <span style="color: orange;">Alumno:  </span>
-                            <span>${NOMBRE}</span>
-                        </div>
-                        <div class="resultado-item">
-                            <span style="color: orange;">Sede:  </span>
-                            <span>${SEDE}</span>
-                        </div>
-                        <div class="resultado-item">
-                            <span style="color: orange;">Grado:  </span>
-                            <span>${GRADO}</span>
-                        </div>
+                        <div class="resultados-container">
+                                <!-- Bloque izquierdo -->
+                                <div class="resultado-left">
+                                    <div class="resultado-item">
+                                        <span style="color: orange;">Alumno: </span>
+                                        <span>${NOMBRE}</span>
+                                    </div>
+                                    <div class="resultado-item">
+                                        <span style="color: orange;">Sede y Grado: </span>
+                                        <span>${GRADO} ${SEDE}</span>
+                                    </div>
+                                </div>
                         <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
                         ${tablaNotas}
                     `;
