@@ -110,7 +110,7 @@ async function buscar() {
         }, {});
 
         let encontrado = false;
-        const asignaturas = ['ARITMETICA', 'ESTADISTICA', 'GEOMETRIA']; // Añadir más asignaturas si es necesario
+        const asignaturas = ['ARITMETICA', 'ESTADISTICA', 'GEOMETRIA', "INGLES"]; // Añadir más asignaturas si es necesario
         const datosAsignaturas = [];
 
         for (const row of rows) {
