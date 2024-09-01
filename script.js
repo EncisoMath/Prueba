@@ -135,7 +135,7 @@ async function buscar() {
 
                     // Construir la tabla con las notas
 const tablaNotas = `
-    <table border="1" style="border-collapse: collapse; width: 100%; font-size: 25px;"> <!-- Establece tamaño de letra general -->
+    <table border="1" style="border-collapse: collapse; width: 100%; font-size: 20px;"> <!-- Establece tamaño de letra general -->
         <thead>
             <tr>
                 <th style="padding: 8px; text-align: center;">Asignatura</th>
@@ -149,8 +149,8 @@ const tablaNotas = `
                     <td style="padding: 8px;">${asignatura.nombre}</td>
                     <td style="padding: 8px;">
                         <span>${asignatura.respuestasCorrectas}</span>
-                        <span style="font-size: 15px;"> / </span> <!-- Ajusta el tamaño del "/" -->
-                        <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span> <!-- Ajusta el tamaño de cantidadPreguntas -->
+                        <span style="font-size: 10px;"> / </span> <!-- Ajusta el tamaño del "/" -->
+                        <span style="font-size: 10px;">${asignatura.cantidadPreguntas}</span> <!-- Ajusta el tamaño de cantidadPreguntas -->
                     </td>
                     <td style="padding: 8px;">${asignatura.resultado}</td>
                 </tr>
