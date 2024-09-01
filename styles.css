@@ -18,7 +18,7 @@
 
 body {
     font-size: 18px; /* Ajustar el tamaño del texto en general */
-    font-family: 'MediumFont', Arial, sans-serif; /* Usar la fuente Medium como primera opción */
+    font-family: 'NumeroFont', Arial, sans-serif; /* Usar la fuente Medium como primera opción */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
