@@ -75,13 +75,31 @@ input[type="text"], select, button {
     text-align: center;
 }
 
-.resultado-item {
+/* Estilo general del bloque de resultados */
+.resultados-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    text-align: left; /* Alinear imagen y datos a la izquierda dentro del contenedor centrado */
-    font-family: 'NumeroFont'; /* Usar la fuente NumeroFont para los resultados */
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px; /* Ajusta según el ancho deseado */
+    margin: 0 auto; /* Centra el bloque en la página */
+}
+
+/* Estilo del bloque izquierdo (Alumno, Sede y Grado) */
+.resultado-left {
+    width: 65%;
+    text-align: left;
+}
+
+/* Estilo del bloque derecho (Ranking) */
+.resultado-right {
+    width: 35%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.resultado-item {
+    margin-bottom: 10px;
 }
 
 .resultado-label {
