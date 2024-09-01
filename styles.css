@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'NumeroFont';
+    font-family: 'BoldFont';
     src: url('Bold.ttf') format('truetype');
     font-weight: bold;
 }
@@ -81,7 +81,7 @@ input[type="text"], select, button {
     justify-content: center;
     margin-bottom: 20px;
     text-align: left; /* Alinear imagen y datos a la izquierda dentro del contenedor centrado */
-    font-family: 'BoldFont'; /* Usar la fuente Bold para los resultados */
+    font-family: Arial; /* Usar la fuente Bold para los resultados */
 }
 
 .resultado-label {
