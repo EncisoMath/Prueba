@@ -118,7 +118,7 @@ async function buscar() {
                             <span style="color: orange;">Grado: </span>
                             <span>${GRADO}</span>
                         </div>
-                        <hr style="border: 2px solid #000; margin: 20px 0;">
+                        <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
                         <div>
                             Holi, esperando instrucciones
                         </div>
@@ -140,4 +140,3 @@ async function buscar() {
 
 // Inicializar el año al cargar la página
 window.onload = cargarAnios;
-
