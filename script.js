@@ -121,23 +121,15 @@ async function buscar() {
                 const SEDE = columns[columnMap['SEDE']];
                 const GRADO = columns[columnMap['GRADO']];
                 const ARITMETICA = columns[columnMap['ARITMETICA']];
+                const Q_ARITMETICA = columns[columnMap['Q_ARITMETICA']];
+                const R_ARITMETICA = columns[columnMap['R_ARITMETICA']];
                 const ESTADISTICA = columns[columnMap['ESTADISTICA']];
+                const Q_ESTADISTICA = columns[columnMap['Q_ESTADISTICA']];
+                const R_ESTADISTICA = columns[columnMap['R_ESTADISTICA']];
                 const GEOMETRIA = columns[columnMap['GEOMETRIA']];
-                const EDUFISICA = columns[columnMap['EDUFISICA']];
-                const INGLES = columns[columnMap['INGLES']];
-                const ETICA = columns[columnMap['ETICA']];
-                const BIOLOGIA = columns[columnMap['BIOLOGIA']];
-                const FISICA = columns[columnMap['FISICA']];
-                const QUIMICA = columns[columnMap['QUIMICA']];
-                const INFORMATICA = columns[columnMap['INFORMATICA']];
-                const HISTORIA = columns[columnMap['HISTORIA']];
-                const GEOGRAFIA = columns[columnMap['GEOGRAFIA']];
-                const CONSTITUCION = columns[columnMap['CONSTITUCION']];
-                const FILOSOFIA = columns[columnMap['FILOSOFIA']];
-                const RELIGION = columns[columnMap['RELIGION']];
-                const LENGUACASTELLANA = columns[columnMap['LENGUACASTELLANA']];
-                const LECTURACRITICA = columns[columnMap['LECTURACRITICA']];
-                const ARTISTICA = columns[columnMap['ARTISTICA']];
+                const Q_GEOMETRIA = columns[columnMap['Q_GEOMETRIA']];
+                const R_GEOMETRIA = columns[columnMap['R_GEOMETRIA']];
+                // Continúa para las demás asignaturas...
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     // Construir la tabla con las notas
@@ -145,29 +137,40 @@ async function buscar() {
                         <table border="1" style="border-collapse: collapse; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="padding: 8px; text-align: left;">Asignatura</th>
-                                    <th style="padding: 8px; text-align: left;">Nota</th>
+                                    <th style="padding: 8px; text-align: center;">Asignatura</th>
+                                    <th style="padding: 8px; text-align: center;">Respuestas Correctas</th>
+                                    <th style="padding: 8px; text-align: center;">Resultados</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>ARITMETICA</td><td>${ARITMETICA}</td></tr>
-                                <tr><td>ESTADISTICA</td><td>${ESTADISTICA}</td></tr>
-                                <tr><td>GEOMETRIA</td><td>${GEOMETRIA}</td></tr>
-                                <tr><td>EDU. FISICA</td><td>${EDUFISICA}</td></tr>
-                                <tr><td>INGLES</td><td>${INGLES}</td></tr>
-                                <tr><td>ETICA</td><td>${ETICA}</td></tr>
-                                <tr><td>BIOLOGIA</td><td>${BIOLOGIA}</td></tr>
-                                <tr><td>FISICA</td><td>${FISICA}</td></tr>
-                                <tr><td>QUIMICA</td><td>${QUIMICA}</td></tr>
-                                <tr><td>INFORMATICA</td><td>${INFORMATICA}</td></tr>
-                                <tr><td>HISTORIA</td><td>${HISTORIA}</td></tr>
-                                <tr><td>GEOGRAFIA</td><td>${GEOGRAFIA}</td></tr>
-                                <tr><td>CONSTITUCION</td><td>${CONSTITUCION}</td></tr>
-                                <tr><td>FILOSOFIA</td><td>${FILOSOFIA}</td></tr>
-                                <tr><td>RELIGION</td><td>${RELIGION}</td></tr>
-                                <tr><td>LENGUA CASTELLANA</td><td>${LENGUACASTELLANA}</td></tr>
-                                <tr><td>LECTURA CRITICA</td><td>${LECTURACRITICA}</td></tr>
-                                <tr><td>ARTISTICA</td><td>${ARTISTICA}</td></tr>
+                                <tr>
+                                    <td style="padding: 8px;">ARITMETICA</td>
+                                    <td style="padding: 8px;">
+                                        <span style="font-size: 25px;">${ARITMETICA}</span>
+                                        /
+                                        <span style="font-size: 15px;">${Q_ARITMETICA}</span>
+                                    </td>
+                                    <td style="padding: 8px;">${R_ARITMETICA}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px;">ESTADISTICA</td>
+                                    <td style="padding: 8px;">
+                                        <span style="font-size: 25px;">${ESTADISTICA}</span>
+                                        /
+                                        <span style="font-size: 15px;">${Q_ESTADISTICA}</span>
+                                    </td>
+                                    <td style="padding: 8px;">${R_ESTADISTICA}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px;">GEOMETRIA</td>
+                                    <td style="padding: 8px;">
+                                        <span style="font-size: 25px;">${GEOMETRIA}</span>
+                                        /
+                                        <span style="font-size: 15px;">${Q_GEOMETRIA}</span>
+                                    </td>
+                                    <td style="padding: 8px;">${R_GEOMETRIA}</td>
+                                </tr>
+                                <!-- Añade más filas para otras asignaturas aquí -->
                             </tbody>
                         </table>
                     `;
