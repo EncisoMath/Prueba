@@ -134,35 +134,34 @@ async function buscar() {
                     });
 
                     // Construir la tabla con las notas
-const tablaNotas = `
-    <table border="1" style="border-collapse: collapse; width: 100%; font-size: 20px;"> <!-- Establece tamaño de letra general -->
-        <thead>
-            <tr>
-                <th style="padding: 8px; text-align: center;"></th> <!-- Columna vacía para la imagen -->
-                <th style="padding: 8px; text-align: center;">Asignatura</th>
-                <th style="padding: 8px; text-align: center;">Respuestas Correctas</th>
-                <th style="padding: 8px; text-align: center;">Resultados</th>
-            </tr>
-        </thead>
-        <tbody>
-            ${datosAsignaturas.map(asignatura => `
-                <tr>
-                    <td style="padding: 8px; text-align: center;">
-                        <img src="${asignatura.nombre}.png" alt="${asignatura.nombre}" style="max-width: 100px; max-height: 100px;">
-                    </td>
-                    <td style="padding: 8px;">${asignatura.nombre}</td>
-                    <td style="padding: 8px;">
-                        <span>${asignatura.respuestasCorrectas}</span>
-                        <span style="font-size: 12px;"> / </span> <!-- Ajusta el tamaño del "/" -->
-                        <span style="font-size: 12px;">${asignatura.cantidadPreguntas}</span> <!-- Ajusta el tamaño de cantidadPreguntas -->
-                    </td>
-                    <td style="padding: 8px;">${asignatura.resultado}</td>
-                </tr>
-            `).join('')}
-        </tbody>
-    </table>
-`;
-
+                    const tablaNotas = `
+                        <table border="1" style="border-collapse: collapse; width: 100%; font-size: 25px;"> <!-- Establece tamaño de letra general -->
+                            <thead>
+                                <tr>
+                                    <th style="padding: 8px; text-align: center;"></th> <!-- Columna vacía para la imagen -->
+                                    <th style="padding: 8px; text-align: center;">Asignatura</th>
+                                    <th style="padding: 8px; text-align: center;">Respuestas Correctas</th>
+                                    <th style="padding: 8px; text-align: center;">Resultados</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${datosAsignaturas.map(asignatura => `
+                                    <tr>
+                                        <td style="padding: 8px; text-align: center;">
+                                            <img src="${asignatura.nombre}.png" alt="${asignatura.nombre}" style="max-width: 100px; max-height: 100px;">
+                                        </td>
+                                        <td style="padding: 8px;">${asignatura.nombre}</td>
+                                        <td style="padding: 8px;">
+                                            <span>${asignatura.respuestasCorrectas}</span>
+                                            <span style="font-size: 15px;"> / </span> <!-- Ajusta el tamaño del "/" -->
+                                            <span style="font-size: 15px;">${asignatura.cantidadPreguntas}</span> <!-- Ajusta el tamaño de cantidadPreguntas -->
+                                        </td>
+                                        <td style="padding: 8px;">${asignatura.resultado}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
 
                     resultado.innerHTML = `
                         <h1>Resultados</h1>
