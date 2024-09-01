@@ -34,6 +34,10 @@ body {
     position: relative; /* Hacer que el banner sea el contenedor de la imagen de logo */
 }
 
+.numero-font {
+    font-family: 'NumeroFont', Arial, sans-serif; /* Aplica la fuente NumeroFont con alternativas */
+}
+
 .logo {
     position: absolute;
     top: 0;
