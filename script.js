@@ -190,7 +190,7 @@ const tablaNotas = `
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Aritmética</td>
                                     <td>${ARITMETICA}</td>
                                     <td>÷</td>
@@ -198,7 +198,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_ARITMETICA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Estadística</td>
                                     <td>${ESTADISTICA}</td>
                                     <td>÷</td>
@@ -206,7 +206,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_ESTADISTICA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Geometría</td>
                                     <td>${GEOMETRIA}</td>
                                     <td>÷</td>
@@ -214,7 +214,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_GEOMETRIA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Educación Física</td>
                                     <td>${EDU_FISICA}</td>
                                     <td>÷</td>
@@ -222,7 +222,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_EDUFISICA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Inglés</td>
                                     <td>${INGLES}</td>
                                     <td>÷</td>
@@ -230,7 +230,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_INGLES}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Ética</td>
                                     <td>${ETICA}</td>
                                     <td>÷</td>
@@ -238,7 +238,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_ETICA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Biología</td>
                                     <td>${BIOLOGIA}</td>
                                     <td>÷</td>
@@ -246,7 +246,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_BIOLOGIA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Física</td>
                                     <td>${FISICA}</td>
                                     <td>÷</td>
@@ -254,7 +254,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_FISICA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Química</td>
                                     <td>${QUIMICA}</td>
                                     <td>÷</td>
@@ -262,7 +262,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_QUIMICA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Informática</td>
                                     <td>${INFORMATICA}</td>
                                     <td>÷</td>
@@ -270,7 +270,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_INFORMATICA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Historia</td>
                                     <td>${HISTORIA}</td>
                                     <td>÷</td>
@@ -278,7 +278,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_HISTORIA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Geografía</td>
                                     <td>${GEOGRAFIA}</td>
                                     <td>÷</td>
@@ -286,7 +286,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_GEOGRAFIA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Constitución</td>
                                     <td>${CONSTITUCION}</td>
                                     <td>÷</td>
@@ -294,7 +294,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_CONSTITUCION}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Filosofía</td>
                                     <td>${FILOSOFIA}</td>
                                     <td>÷</td>
@@ -302,7 +302,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_FILOSOFIA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Religión</td>
                                     <td>${RELIGION}</td>
                                     <td>÷</td>
@@ -310,7 +310,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_RELIGION}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Lengua Castellana</td>
                                     <td>${LENGUACASTELLANA}</td>
                                     <td>÷</td>
@@ -318,7 +318,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_LENGUACASTELLANA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Lectura Crítica</td>
                                     <td>${LECTURACRITICA}</td>
                                     <td>÷</td>
@@ -326,7 +326,7 @@ const tablaNotas = `
                                     <td>=</td>
                                     <td>${R_LECTURACRITICA}</td>
                                 </tr>
-                                <tr style="height: 19px;">
+                                <tr style="height: 30px;">
                                     <td>Artística</td>
                                     <td>${ARTISTICA}</td>
                                     <td>÷</td>
