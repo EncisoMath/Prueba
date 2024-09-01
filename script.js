@@ -157,6 +157,7 @@ async function buscar() {
                         const nombreAsignatura = nombreAsignaturaMap.get(asignatura) || asignatura;
                         datosAsignaturas.push({
                             nombre: nombreAsignatura,
+                            icono: asignatura,
                             respuestasCorrectas: columns[columnMap[asignatura]],
                             cantidadPreguntas: columns[columnMap[`Q_${asignatura}`]],
                             resultado: columns[columnMap[`R_${asignatura}`]]
@@ -179,7 +180,7 @@ async function buscar() {
                                         <td style="padding: 8px; text-align: center; font-size: 18px">
                                             <div style="display: flex; flex-direction: column; align-items: center;">
                                                 ${(() => {
-                                                    const Icon = `${asignatura.nombre}.png`;                                        
+                                                    const Icon = `${asignatura.icono}.png`;                                        
                                                     return `<img 
                                                         src="${Icon}"
                                                         style="width: 50px; height: 50px;"
