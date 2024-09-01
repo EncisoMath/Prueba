@@ -189,7 +189,9 @@ async function buscar() {
                             <!-- Bloque derecho -->
                             <div class="resultado-right">
                                 <div class="resultado-item">
-                                <span class="bold-font" style="font-size: 40px;">Ranking</span>
+                                    <div>Ranking</div>
+                                    <div>1</div>
+                                </div>
                             </div>
                         </div>
                         <hr class="linea-separadora">
