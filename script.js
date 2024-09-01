@@ -190,7 +190,7 @@ async function buscar() {
                             <div class="resultado-right">
                                 <div class="resultado-item">
                                     <div>Ranking</div>
-                                    <div>${ranking}</div>
+                                    <div>1</div>
                                 </div>
                             </div>
                         </div>
