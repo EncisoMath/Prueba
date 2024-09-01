@@ -11,7 +11,7 @@ async function cargarAnios() {
         const anios = new Set();
         rows.forEach(row => {
             const columns = row.split(',');
-            if (columns.length >= 4) {
+            if (columns.length) {
                 const [ANIO] = columns.map(col => col.trim()); // Extraer el valor de ANIO
                 anios.add(ANIO);
             }
@@ -46,7 +46,7 @@ async function cargarPruebas() {
         const pruebas = new Set();
         rows.forEach(row => {
             const columns = row.split(',');
-            if (columns.length >= 4) {
+            if (columns.length) {
                 const [ANIO, PRUEBA] = columns.map(col => col.trim()); // Extraer valores de ANIO y PRUEBA
                 if (ANIO === anio) {
                     pruebas.add(PRUEBA);
@@ -94,18 +94,46 @@ async function buscar() {
             throw new Error(`Error al cargar el CSV: ${response.statusText}`);
         }
         const data = await response.text();
-        const rows = data.split('\n').slice(1); // Saltar la cabecera
+        const rows = data.split('\n');
+
+        // Obtener los nombres de las columnas
+        const header = rows.shift().split(',').map(col => col.trim()); // Obtener la primera fila como encabezado
+
+        // Crear un mapa de nombres de columna a índices
+        const columnMap = header.reduce((map, column, index) => {
+            map[column] = index;
+            return map;
+        }, {});
 
         let encontrado = false;
 
         for (const row of rows) {
-            const columns = row.split(',');
-            if (columns.length >= 18) { // Asegurarse de que hay suficientes columnas
-                const [ANIO, PRUEBA, ID, NOTAFINAL, PROMEDIO, NOMBRE, SEDE, GRADO, 
-                        ARITMETICA, ESTADISTICA, GEOMETRIA, EDU_FISICA, INGLES, ETICA, 
-                        BIOLOGIA, FISICA, QUIMICA, INFORMATICA, HISTORIA, GEOGRAFIA, 
-                        CONSTITUCION, FILOSOFIA, RELIGION, LENGUACASTELLANA, LECTURACRITICA, 
-                        ARTISTICA] = columns.map(col => col.trim()); // Eliminar espacios en blanco
+            const columns = row.split(',').map(col => col.trim());
+            if (columns.length) {
+                const ANIO = columns[columnMap['ANIO']];
+                const PRUEBA = columns[columnMap['PRUEBA']];
+                const ID = columns[columnMap['ID']];
+                const NOMBRE = columns[columnMap['NOMBRE']];
+                const SEDE = columns[columnMap['SEDE']];
+                const GRADO = columns[columnMap['GRADO']];
+                const ARITMETICA = columns[columnMap['ARITMETICA']];
+                const ESTADISTICA = columns[columnMap['ESTADISTICA']];
+                const GEOMETRIA = columns[columnMap['GEOMETRIA']];
+                const EDU_FISICA = columns[columnMap['EDU. FISICA']];
+                const INGLES = columns[columnMap['INGLES']];
+                const ETICA = columns[columnMap['ETICA']];
+                const BIOLOGIA = columns[columnMap['BIOLOGIA']];
+                const FISICA = columns[columnMap['FISICA']];
+                const QUIMICA = columns[columnMap['QUIMICA']];
+                const INFORMATICA = columns[columnMap['INFORMATICA']];
+                const HISTORIA = columns[columnMap['HISTORIA']];
+                const GEOGRAFIA = columns[columnMap['GEOGRAFIA']];
+                const CONSTITUCION = columns[columnMap['CONSTITUCION']];
+                const FILOSOFIA = columns[columnMap['FILOSOFIA']];
+                const RELIGION = columns[columnMap['RELIGION']];
+                const LENGUACASTELLANA = columns[columnMap['LENGUACASTELLANA']];
+                const LECTURACRITICA = columns[columnMap['LECTURACRITICA']];
+                const ARTISTICA = columns[columnMap['ARTISTICA']];
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     // Construir la tabla con las notas
@@ -168,7 +196,7 @@ async function buscar() {
         }
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
-        resultado.innerHTML = 'Hubo un error al procesar la solicitud. 431';
+        resultado.innerHTML = 'Hubo un error al procesar la solicitud.';
     }
 }
 
