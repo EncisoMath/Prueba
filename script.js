@@ -181,8 +181,14 @@ async function buscar() {
                                         <span>${NOMBRE}</span>
                                     </div>
                                     <div class="resultado-item">
-                                        <span style="color: orange;">Sede y Grado: </span>
+                                        <span style="color: orange;">Grado y Sede: </span>
                                         <span>${GRADO} ${SEDE}</span>
+                                    </div>
+                                </div>
+                                <div class="resultado-right">
+                                    <div class="resultado-item">
+                                        <div>Ranking</div>
+                                        <div>1</div>
                                     </div>
                                 </div>
                         <hr style="border: 3px solid red; margin: 20px 0; width: 100%;">
