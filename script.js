@@ -215,10 +215,10 @@ async function buscar() {
                             </div>
                         </div>
                         <hr>
+                        ${tablaNotas}
+                        <hr>
                         <h1>Aquí está tu examen:</h1>
                         <img src="${imgExamen}" onerror="this.src='https://via.placeholder.com/150';" alt="Examen del alumno">
-                        <hr>
-                        ${tablaNotas}
                     `;
 
                     encontrado = true;
