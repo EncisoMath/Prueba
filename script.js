@@ -181,12 +181,12 @@ const tablaNotas = `
                         <table border="1" style="border-collapse: collapse; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="padding: 8px; text-align: left;">Asignatura</th>
-                                    <th style="padding: 8px; text-align: left;">Respuestas Correctas</th>
-                                    <th style="padding: 8px; text-align: left;"></th>
-                                    <th style="padding: 8px; text-align: left;">Preguntas</th>
-                                    <th style="padding: 8px; text-align: left;"></th>
-                                    <th style="padding: 8px; text-align: left;">Resultado</th>
+                                    <th style="width: 20px; padding: 8px; text-align: center;">Asignatura</th>
+                                    <th style="width: 12px; padding: 8px; text-align: center;">Respuestas Correctas</th>
+                                    <th style="width: 12px; padding: 8px; text-align: center;"></th>
+                                    <th style="width: 12px; padding: 8px; text-align: center;">Preguntas</th>
+                                    <th style="width: 12px; padding: 8px; text-align: center;"></th>
+                                    <th style="width: 12px; padding: 8px; text-align: center;">Resultado</th>
                                 </tr>
                             </thead>
                             <tbody>
