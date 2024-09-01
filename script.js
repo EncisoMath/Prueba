@@ -1,3 +1,82 @@
+async function cargarAnios() {
+    try {
+        const response = await fetch('datos.csv');
+        if (!response.ok) {
+            throw new Error(Error al cargar el CSV: ${response.statusText});
+        }
+        const data = await response.text();
+        const rows = data.split('\n').slice(1); // Saltar la cabecera
+
+        // Extraer años únicos
+        const anios = new Set();
+        rows.forEach(row => {
+            const columns = row.split(',');
+            if (columns.length) {
+                const [ANIO] = columns.map(col => col.trim()); // Extraer el valor de ANIO
+                anios.add(ANIO);
+            }
+        });
+
+        const anoSelect = document.getElementById('ano');
+        anios.forEach(anio => {
+            const option = document.createElement('option');
+            option.value = anio;
+            option.textContent = anio;
+            anoSelect.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error('Error al cargar los años:', error);
+    }
+}
+
+async function cargarPruebas() {
+    const anio = document.getElementById('ano').value;
+    if (!anio) return;
+
+    try {
+        const response = await fetch('datos.csv');
+        if (!response.ok) {
+            throw new Error(Error al cargar el CSV: ${response.statusText});
+        }
+        const data = await response.text();
+        const rows = data.split('\n').slice(1); // Saltar la cabecera
+
+        // Extraer pruebas para el año seleccionado
+        const pruebas = new Set();
+        rows.forEach(row => {
+            const columns = row.split(',');
+            if (columns.length) {
+                const [ANIO, PRUEBA] = columns.map(col => col.trim()); // Extraer valores de ANIO y PRUEBA
+                if (ANIO === anio) {
+                    pruebas.add(PRUEBA);
+                }
+            }
+        });
+
+        const pruebaSelect = document.getElementById('prueba');
+        pruebaSelect.innerHTML = '<option value="">Selecciona una prueba</option>'; // Limpiar opciones anteriores
+        pruebas.forEach(prueba => {
+            const option = document.createElement('option');
+            option.value = prueba;
+            option.textContent = prueba;
+            pruebaSelect.appendChild(option);
+        });
+
+        document.getElementById('container-prueba').style.display = 'block'; // Mostrar el campo de prueba
+
+    } catch (error) {
+        console.error('Error al cargar las pruebas:', error);
+    }
+}
+
+function mostrarCampoCodigo() {
+    const prueba = document.getElementById('prueba').value;
+    if (prueba) {
+        document.getElementById('busqueda').style.display = 'block'; // Mostrar el campo de código
+    }
+}
+
 async function buscar() {
     const codigo = document.getElementById('codigo').value.trim();
     const resultado = document.getElementById('resultado');
@@ -12,7 +91,7 @@ async function buscar() {
     try {
         const response = await fetch('datos.csv');
         if (!response.ok) {
-            throw new Error(`Error al cargar el CSV: ${response.statusText}`);
+            throw new Error(Error al cargar el CSV: ${response.statusText});
         }
         const data = await response.text();
         const rows = data.split('\n');
@@ -98,40 +177,38 @@ async function buscar() {
 
                 if (ANIO === anio && PRUEBA === prueba && ID === codigo) {
                     // Construir la tabla con las notas
-                    const tablaNotas = `
+                    const tablaNotas = 
                         <table border="1" style="border-collapse: collapse; width: 100%;">
                             <thead>
                                 <tr>
                                     <th style="padding: 8px; text-align: left;">Asignatura</th>
                                     <th style="padding: 8px; text-align: left;">Nota</th>
-                                    <th style="padding: 8px; text-align: left;">÷</th>
                                     <th style="padding: 8px; text-align: left;">Preguntas</th>
-                                    <th style="padding: 8px; text-align: left;">=</th>
                                     <th style="padding: 8px; text-align: left;">Resultado</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Aritmética</td><td>${ARITMETICA}</td><td>÷</td><td>${Q_ARITMETICA}</td><td>=</td><td>${R_ARITMETICA}</td></tr>
-                                <tr><td>Estadística</td><td>${ESTADISTICA}</td><td>÷</td><td>${Q_ESTADISTICA}</td><td>=</td><td>${R_ESTADISTICA}</td></tr>
-                                <tr><td>Geometría</td><td>${GEOMETRIA}</td><td>÷</td><td>${Q_GEOMETRIA}</td><td>=</td><td>${R_GEOMETRIA}</td></tr>
-                                <tr><td>Educación Física</td><td>${EDU_FISICA}</td><td>÷</td><td>${Q_EDUFISICA}</td><td>=</td><td>${R_EDUFISICA}</td></tr>
-                                <tr><td>Inglés</td><td>${INGLES}</td><td>÷</td><td>${Q_INGLES}</td><td>=</td><td>${R_INGLES}</td></tr>
-                                <tr><td>Ética</td><td>${ETICA}</td><td>÷</td><td>${Q_ETICA}</td><td>=</td><td>${R_ETICA}</td></tr>
-                                <tr><td>Biología</td><td>${BIOLOGIA}</td><td>÷</td><td>${Q_BIOLOGIA}</td><td>=</td><td>${R_BIOLOGIA}</td></tr>
-                                <tr><td>Física</td><td>${FISICA}</td><td>÷</td><td>${Q_FISICA}</td><td>=</td><td>${R_FISICA}</td></tr>
-                                <tr><td>Química</td><td>${QUIMICA}</td><td>÷</td><td>${Q_QUIMICA}</td><td>=</td><td>${R_QUIMICA}</td></tr>
-                                <tr><td>Informática</td><td>${INFORMATICA}</td><td>÷</td><td>${Q_INFORMATICA}</td><td>=</td><td>${R_INFORMATICA}</td></tr>
-                                <tr><td>Historia</td><td>${HISTORIA}</td><td>÷</td><td>${Q_HISTORIA}</td><td>=</td><td>${R_HISTORIA}</td></tr>
-                                <tr><td>Geografía</td><td>${GEOGRAFIA}</td><td>÷</td><td>${Q_GEOGRAFIA}</td><td>=</td><td>${R_GEOGRAFIA}</td></tr>
-                                <tr><td>Constitución</td><td>${CONSTITUCION}</td><td>÷</td><td>${Q_CONSTITUCION}</td><td>=</td><td>${R_CONSTITUCION}</td></tr>
-                                <tr><td>Filosofía</td><td>${FILOSOFIA}</td><td>÷</td><td>${Q_FILOSOFIA}</td><td>=</td><td>${R_FILOSOFIA}</td></tr>
-                                <tr><td>Religión</td><td>${RELIGION}</td><td>÷</td><td>${Q_RELIGION}</td><td>=</td><td>${R_RELIGION}</td></tr>
-                                <tr><td>Lengua Castellana</td><td>${LENGUACASTELLANA}</td><td>÷</td><td>${Q_LENGUACASTELLANA}</td><td>=</td><td>${R_LENGUACASTELLANA}</td></tr>
-                                <tr><td>Lectura Crítica</td><td>${LECTURACRITICA}</td><td>÷</td><td>${Q_LECTURACRITICA}</td><td>=</td><td>${R_LECTURACRITICA}</td></tr>
-                                <tr><td>Artística</td><td>${ARTISTICA}</td><td>÷</td><td>${Q_ARTISTICA}</td><td>=</td><td>${R_ARTISTICA}</td></tr>
+                                <tr><td>Aritmética</td><td>${ARITMETICA}</td><td>${Q_ARITMETICA}</td><td>${R_ARITMETICA}</td></tr>
+                                <tr><td>Estadística</td><td>${ESTADISTICA}</td><td>${Q_ESTADISTICA}</td><td>${R_ESTADISTICA}</td></tr>
+                                <tr><td>Geometría</td><td>${GEOMETRIA}</td><td>${Q_GEOMETRIA}</td><td>${R_GEOMETRIA}</td></tr>
+                                <tr><td>Educación Física</td><td>${EDU_FISICA}</td><td>${Q_EDUFISICA}</td><td>${R_EDUFISICA}</td></tr>
+                                <tr><td>Inglés</td><td>${INGLES}</td><td>${Q_INGLES}</td><td>${R_INGLES}</td></tr>
+                                <tr><td>Ética</td><td>${ETICA}</td><td>${Q_ETICA}</td><td>${R_ETICA}</td></tr>
+                                <tr><td>Biología</td><td>${BIOLOGIA}</td><td>${Q_BIOLOGIA}</td><td>${R_BIOLOGIA}</td></tr>
+                                <tr><td>Física</td><td>${FISICA}</td><td>${Q_FISICA}</td><td>${R_FISICA}</td></tr>
+                                <tr><td>Química</td><td>${QUIMICA}</td><td>${Q_QUIMICA}</td><td>${R_QUIMICA}</td></tr>
+                                <tr><td>Informática</td><td>${INFORMATICA}</td><td>${Q_INFORMATICA}</td><td>${R_INFORMATICA}</td></tr>
+                                <tr><td>Historia</td><td>${HISTORIA}</td><td>${Q_HISTORIA}</td><td>${R_HISTORIA}</td></tr>
+                                <tr><td>Geografía</td><td>${GEOGRAFIA}</td><td>${Q_GEOGRAFIA}</td><td>${R_GEOGRAFIA}</td></tr>
+                                <tr><td>Constitución</td><td>${CONSTITUCION}</td><td>${Q_CONSTITUCION}</td><td>${R_CONSTITUCION}</td></tr>
+                                <tr><td>Filosofía</td><td>${FILOSOFIA}</td><td>${Q_FILOSOFIA}</td><td>${R_FILOSOFIA}</td></tr>
+                                <tr><td>Religión</td><td>${RELIGION}</td><td>${Q_RELIGION}</td><td>${R_RELIGION}</td></tr>
+                                <tr><td>Lengua Castellana</td><td>${LENGUACASTELLANA}</td><td>${Q_LENGUACASTELLANA}</td><td>${R_LENGUACASTELLANA}</td></tr>
+                                <tr><td>Lectura Crítica</td><td>${LECTURACRITICA}</td><td>${Q_LECTURACRITICA}</td><td>${R_LECTURACRITICA}</td></tr>
+                                <tr><td>Artística</td><td>${ARTISTICA}</td><td>${Q_ARTISTICA}</td><td>${R_ARTISTICA}</td></tr>
                             </tbody>
                         </table>
-                    `;
+                    ;
                     resultado.innerHTML = tablaNotas;
                     encontrado = true;
                     break;
@@ -140,10 +217,22 @@ async function buscar() {
         }
 
         if (!encontrado) {
-            resultado.innerHTML = 'No se encontró el código en los datos.';
+            resultado.innerHTML = 'No se encontraron resultados.';
         }
+
     } catch (error) {
-        console.error('Error al procesar el CSV:', error);
-        resultado.innerHTML = 'Error al procesar los datos.';
+        console.error('Error al buscar el código:', error);
     }
 }
+
+// Cargar años al inicio
+document.addEventListener('DOMContentLoaded', cargarAnios);
+
+// Manejar cambio de selección de año
+document.getElementById('ano').addEventListener('change', cargarPruebas);
+
+// Manejar cambio de selección de prueba
+document.getElementById('prueba').addEventListener('change', mostrarCampoCodigo);
+
+// Manejar búsqueda
+document.getElementById('buscar').addEventListener('click', buscar);
