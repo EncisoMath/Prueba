@@ -138,7 +138,6 @@ async function buscar() {
                         <table border="1" style="border-collapse: collapse; width: 100%; font-size: 25px;"> <!-- Establece tamaño de letra general -->
                             <thead>
                                 <tr>
-                                    <th style="padding: 8px; text-align: center;"></th> <!-- Columna vacía para la imagen -->
                                     <th style="padding: 8px; text-align: center;">Asignatura</th>
                                     <th style="padding: 8px; text-align: center;">Respuestas Correctas</th>
                                     <th style="padding: 8px; text-align: center;">Resultados</th>
@@ -147,10 +146,12 @@ async function buscar() {
                             <tbody>
                                 ${datosAsignaturas.map(asignatura => `
                                     <tr>
+                                        <td style="padding: 8px;">
+                                        <span>${asignatura.nombre}</span>
                                         <td style="padding: 8px; text-align: center;">
                                             <img src="https://raw.githubusercontent.com/EncisoMath/Prueba/main/estadistica.png" style="width: 60px; height: 60px;">
                                         </td>
-                                        <td style="padding: 8px;">${asignatura.nombre}</td>
+                                        </td>
                                         <td style="padding: 8px;">
                                             <span>${asignatura.respuestasCorrectas}</span>
                                             <span style="font-size: 15px;"> / </span> <!-- Ajusta el tamaño del "/" -->
