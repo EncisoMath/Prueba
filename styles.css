@@ -28,7 +28,7 @@ body {
 
 .banner {
     width: 100%;
-    height: 100px; /* Altura fija para el banner */
+    height: 5%; /* Altura fija para el banner */
     background: url('banner.png') no-repeat center center; /* Centra la imagen y no la repite */
     background-size: cover; /* Estira la imagen para cubrir el área del banner */
     position: relative; /* Hacer que el banner sea el contenedor de la imagen de logo */
@@ -47,8 +47,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100px;
-    height: 100px;
+    width: 5%;
+    height: 5%;
     background: url('logo.png') no-repeat center center;
     background-size: contain; /* Mantener la relación de aspecto del logo */
 }
